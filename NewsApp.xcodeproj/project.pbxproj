@@ -16,6 +16,9 @@
 		0C5858512A9A6B7C0089D81B /* NewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858502A9A6B7C0089D81B /* NewsAppUITests.swift */; };
 		0C5858532A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858522A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift */; };
 		0C58586E2A9A77C40089D81B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0C58586D2A9A77C40089D81B /* .swiftlint.yml */; };
+		0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858782A9A7DC10089D81B /* NetworkManager.swift */; };
+		0C58587B2A9A7DE30089D81B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C58587A2A9A7DE30089D81B /* NetworkService.swift */; };
+		0C58587E2A9A7E270089D81B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0C58587D2A9A7E270089D81B /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,8 @@
 		0C5858502A9A6B7C0089D81B /* NewsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITests.swift; sourceTree = "<group>"; };
 		0C5858522A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0C58586D2A9A77C40089D81B /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		0C5858782A9A7DC10089D81B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0C58587A2A9A7DE30089D81B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C58587E2A9A7E270089D81B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +160,7 @@
 		0C5858622A9A6E400089D81B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0C5858752A9A7D350089D81B /* Network */,
 				0C5858632A9A6EC30089D81B /* Data */,
 			);
 			path = Utilities;
@@ -183,6 +190,31 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		0C5858752A9A7D350089D81B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0C5858762A9A7D610089D81B /* Manager */,
+				0C5858772A9A7D710089D81B /* Service */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0C5858762A9A7D610089D81B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0C5858782A9A7DC10089D81B /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		0C5858772A9A7D710089D81B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0C58587A2A9A7DE30089D81B /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +233,7 @@
 			);
 			name = NewsApp;
 			packageProductDependencies = (
+				0C58587D2A9A7E270089D81B /* Alamofire */,
 			);
 			productName = NewsApp;
 			productReference = 0C5858292A9A6B7A0089D81B /* NewsApp.app */;
@@ -275,6 +308,7 @@
 			);
 			mainGroup = 0C5858202A9A6B7A0089D81B;
 			packageReferences = (
+				0C58587C2A9A7E270089D81B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 0C58582A2A9A6B7A0089D81B /* Products */;
 			projectDirPath = "";
@@ -339,6 +373,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C58587B2A9A7DE30089D81B /* NetworkService.swift in Sources */,
+				0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */,
 				0C58582D2A9A6B7A0089D81B /* AppDelegate.swift in Sources */,
 				0C5858372A9A6B7A0089D81B /* NewsApp.xcdatamodeld in Sources */,
 				0C58582F2A9A6B7A0089D81B /* SceneDelegate.swift in Sources */,
@@ -681,6 +717,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C58587C2A9A7E270089D81B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C58587D2A9A7E270089D81B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C58587C2A9A7E270089D81B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0C5858352A9A6B7A0089D81B /* NewsApp.xcdatamodeld */ = {
