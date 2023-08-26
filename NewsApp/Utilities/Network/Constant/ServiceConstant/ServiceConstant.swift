@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Network Constant
 extension Constant {
 
     class Network {
@@ -18,7 +19,7 @@ extension Constant {
 
             //https://newsapi.org/v2/top-headlines/sources?apiKey=8e9f2552595e46968c630269fe0eda98
             
-            static func fetchArticles() -> String {
+            static func fetchNewsPath() -> String {
                 "\(ServiceEndPoint.BASE_URL.rawValue)\(ServiceEndPoint.API_KEY.rawValue)"
             }
         }

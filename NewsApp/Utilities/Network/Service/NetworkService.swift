@@ -9,19 +9,17 @@ import Alamofire
 
 // MARK: - ServiceProtocol
 protocol NetworkServiceProtocol: AnyObject {
-    func fetchArticles(onSuccess: @escaping (ArticleList?) -> Void, onError: @escaping (AFError) -> Void)
+    func fetchNews(onSuccess: @escaping (NewsModel?) -> Void, onError: @escaping (AFError) -> Void)
 }
 
 // MARK: - Services
 final class NetworkService: NetworkServiceProtocol {
 
-    func fetchArticles(onSuccess: @escaping (ArticleList?) -> Void, onError: @escaping (AFError) -> Void) {
-        NetworkManager.shared.fetch(path: Constant.Network.ServiceEndPoint.fetchArticles()) { (response: ArticleList) in
+    func fetchNews(onSuccess: @escaping (NewsModel?) -> Void, onError: @escaping (AFError) -> Void) {
+        NetworkManager.shared.fetch(path: Constant.Network.ServiceEndPoint.fetchNewsPath()) { (response: NewsModel) in
             onSuccess(response)
-
         } onError: { error in
             onError(error)
         }
     }
-
 }
