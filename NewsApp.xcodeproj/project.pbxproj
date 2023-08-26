@@ -22,6 +22,7 @@
 		0C5858842A9A81120089D81B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858832A9A81120089D81B /* Constant.swift */; };
 		0C5858862A9A81470089D81B /* ServiceConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858852A9A81470089D81B /* ServiceConstant.swift */; };
 		0C5858882A9A82FD0089D81B /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858872A9A82FD0089D81B /* NewsModel.swift */; };
+		0C5858932A9A8C310089D81B /* NewsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858922A9A8C310089D81B /* NewsDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		0C5858832A9A81120089D81B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		0C5858852A9A81470089D81B /* ServiceConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConstant.swift; sourceTree = "<group>"; };
 		0C5858872A9A82FD0089D81B /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		0C5858922A9A8C310089D81B /* NewsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				0C5858872A9A82FD0089D81B /* NewsModel.swift */,
+				0C5858922A9A8C310089D81B /* NewsDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				0C5858882A9A82FD0089D81B /* NewsModel.swift in Sources */,
 				0C58587B2A9A7DE30089D81B /* NetworkService.swift in Sources */,
 				0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */,
+				0C5858932A9A8C310089D81B /* NewsDetail.swift in Sources */,
 				0C58582D2A9A6B7A0089D81B /* AppDelegate.swift in Sources */,
 				0C5858372A9A6B7A0089D81B /* NewsApp.xcdatamodeld in Sources */,
 				0C58582F2A9A6B7A0089D81B /* SceneDelegate.swift in Sources */,
