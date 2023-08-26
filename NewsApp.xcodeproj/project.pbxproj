@@ -15,6 +15,7 @@
 		0C5858472A9A6B7C0089D81B /* NewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858462A9A6B7C0089D81B /* NewsAppTests.swift */; };
 		0C5858512A9A6B7C0089D81B /* NewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858502A9A6B7C0089D81B /* NewsAppUITests.swift */; };
 		0C5858532A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858522A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift */; };
+		0C58586E2A9A77C40089D81B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0C58586D2A9A77C40089D81B /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		0C58584C2A9A6B7C0089D81B /* NewsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C5858502A9A6B7C0089D81B /* NewsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITests.swift; sourceTree = "<group>"; };
 		0C5858522A9A6B7C0089D81B /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C58586D2A9A77C40089D81B /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		0C58582B2A9A6B7A0089D81B /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				0C58586D2A9A77C40089D81B /* .swiftlint.yml */,
 				0C58585F2A9A6D5B0089D81B /* AppDelegate */,
 				0C5858622A9A6E400089D81B /* Utilities */,
 				0C5858602A9A6DFE0089D81B /* Scenes */,
@@ -187,6 +190,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C5858562A9A6B7C0089D81B /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
+				0C5858692A9A763A0089D81B /* ShellScript */,
 				0C5858252A9A6B7A0089D81B /* Sources */,
 				0C5858262A9A6B7A0089D81B /* Frameworks */,
 				0C5858272A9A6B7A0089D81B /* Resources */,
@@ -196,6 +200,8 @@
 			dependencies = (
 			);
 			name = NewsApp;
+			packageProductDependencies = (
+			);
 			productName = NewsApp;
 			productReference = 0C5858292A9A6B7A0089D81B /* NewsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +274,8 @@
 				Base,
 			);
 			mainGroup = 0C5858202A9A6B7A0089D81B;
+			packageReferences = (
+			);
 			productRefGroup = 0C58582A2A9A6B7A0089D81B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C58586E2A9A77C40089D81B /* .swiftlint.yml in Resources */,
 				0C58583C2A9A6B7C0089D81B /* LaunchScreen.storyboard in Resources */,
 				0C5858392A9A6B7C0089D81B /* Assets.xcassets in Resources */,
 			);
@@ -304,6 +313,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C5858692A9A763A0089D81B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C5858252A9A6B7A0089D81B /* Sources */ = {
@@ -410,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -464,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -488,6 +517,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -495,9 +525,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ISMAIL.PALALI.NewsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -515,6 +548,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,9 +556,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ISMAIL.PALALI.NewsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
