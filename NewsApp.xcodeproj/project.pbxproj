@@ -19,6 +19,8 @@
 		0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858782A9A7DC10089D81B /* NetworkManager.swift */; };
 		0C58587B2A9A7DE30089D81B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C58587A2A9A7DE30089D81B /* NetworkService.swift */; };
 		0C58587E2A9A7E270089D81B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0C58587D2A9A7E270089D81B /* Alamofire */; };
+		0C5858842A9A81120089D81B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858832A9A81120089D81B /* Constant.swift */; };
+		0C5858862A9A81470089D81B /* ServiceConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858852A9A81470089D81B /* ServiceConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		0C58586D2A9A77C40089D81B /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0C5858782A9A7DC10089D81B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0C58587A2A9A7DE30089D81B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0C5858832A9A81120089D81B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		0C5858852A9A81470089D81B /* ServiceConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConstant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,8 @@
 		0C5858752A9A7D350089D81B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0C5858802A9A80A20089D81B /* Constant */,
+				0C58587F2A9A7F9E0089D81B /* Model */,
 				0C5858762A9A7D610089D81B /* Manager */,
 				0C5858772A9A7D710089D81B /* Service */,
 			);
@@ -213,6 +219,38 @@
 				0C58587A2A9A7DE30089D81B /* NetworkService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0C58587F2A9A7F9E0089D81B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C5858802A9A80A20089D81B /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				0C5858812A9A80D40089D81B /* BaseConstant */,
+				0C5858822A9A80FD0089D81B /* ServiceConstant */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		0C5858812A9A80D40089D81B /* BaseConstant */ = {
+			isa = PBXGroup;
+			children = (
+				0C5858832A9A81120089D81B /* Constant.swift */,
+			);
+			path = BaseConstant;
+			sourceTree = "<group>";
+		};
+		0C5858822A9A80FD0089D81B /* ServiceConstant */ = {
+			isa = PBXGroup;
+			children = (
+				0C5858852A9A81470089D81B /* ServiceConstant.swift */,
+			);
+			path = ServiceConstant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +416,8 @@
 				0C58582D2A9A6B7A0089D81B /* AppDelegate.swift in Sources */,
 				0C5858372A9A6B7A0089D81B /* NewsApp.xcdatamodeld in Sources */,
 				0C58582F2A9A6B7A0089D81B /* SceneDelegate.swift in Sources */,
+				0C5858842A9A81120089D81B /* Constant.swift in Sources */,
+				0C5858862A9A81470089D81B /* ServiceConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
