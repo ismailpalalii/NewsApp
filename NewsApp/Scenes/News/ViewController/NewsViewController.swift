@@ -62,6 +62,7 @@ final class NewsViewController: UIViewController {
     }
 }
 
+// MARK: UITableView Delegate
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -72,6 +73,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: UICollectionView Delegate
 extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
