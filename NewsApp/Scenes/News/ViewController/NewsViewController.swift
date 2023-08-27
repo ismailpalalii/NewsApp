@@ -8,7 +8,13 @@
 import UIKit
 import SnapKit
 
-final class NewsViewController: UIViewController {
+// MARK: NewsViewDelegate
+protocol NewsViewDelegate: BaseViewDelegate {
+    func reloadData()
+    func goDetailScreen(with viewController: UIViewController)
+}
+
+final class NewsViewController: BaseViewController {
 
     // MARK: Create UI items
     private lazy var categoryCollectionView: UICollectionView = {
@@ -22,13 +28,21 @@ final class NewsViewController: UIViewController {
 
     private lazy var newsSourcesTableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 80
+        tableView.rowHeight = 120
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
+    private var viewModel = NewsViewModel()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getNewsSource()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.view = self
         configure()
     }
 
@@ -38,11 +52,6 @@ final class NewsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(categoryCollectionView)
         view.addSubview(newsSourcesTableView)
-
-        newsSourcesTableView.delegate = self
-        newsSourcesTableView.dataSource = self
-        categoryCollectionView.delegate = self
-        categoryCollectionView.dataSource = self
 
         navigationItem.hidesBackButton = true
 
@@ -57,19 +66,28 @@ final class NewsViewController: UIViewController {
 
         newsSourcesTableView.snp.makeConstraints { make in
             make.top.equalTo(categoryCollectionView.snp.bottom).offset(16)
-            make.width.height.equalToSuperview()
+            make.bottom.equalToSuperview().offset(8)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
         }
+
+        setTableView()
+        setCollectionView()
     }
 }
 
 // MARK: UITableView Delegate
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.sourceList?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = newsSourcesTableView.dequeueReusableCell(withIdentifier: NewsSourcesTableViewCell.identifier, for: indexPath) as? NewsSourcesTableViewCell else { return UITableViewCell() }
+
+        cell.setSourcelist(title: viewModel.sourceList?[indexPath.row].name ?? "",
+                           desc:  viewModel.sourceList?[indexPath.row].description ?? "")
+        return cell
     }
 }
 
@@ -81,5 +99,28 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
+    }
+}
+
+extension NewsViewController: NewsViewDelegate {
+    func reloadData() {
+        categoryCollectionView.reloadData()
+        newsSourcesTableView.reloadData()
+    }
+
+    func setTableView() {
+        newsSourcesTableView.delegate = self
+        newsSourcesTableView.dataSource = self
+
+        newsSourcesTableView.register(NewsSourcesTableViewCell.self, forCellReuseIdentifier: NewsSourcesTableViewCell.identifier)
+    }
+
+    func setCollectionView() {
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
+    }
+
+    func goDetailScreen(with viewController: UIViewController) {
+        pushViewController(with: viewController)
     }
 }
