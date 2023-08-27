@@ -60,7 +60,7 @@ final class NewsViewController: BaseViewController {
             make.top.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(16)
             make.left.equalToSuperview().offset(16)
-            make.height.equalTo(80)
+            make.height.equalTo(200)
             make.width.equalToSuperview()
         }
 
@@ -94,7 +94,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: UICollectionView Delegate
 extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return viewModel.allCategories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -102,6 +102,7 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
+// MARK: NewsViewDelegate Delegate
 extension NewsViewController: NewsViewDelegate {
     func reloadData() {
         categoryCollectionView.reloadData()
