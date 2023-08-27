@@ -46,10 +46,19 @@ final class NewsViewController: UIViewController {
 
         navigationItem.hidesBackButton = true
 
-
         // MARK: Constraints
+        categoryCollectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.height.equalTo(80)
+            make.width.equalToSuperview()
+        }
 
-
+        newsSourcesTableView.snp.makeConstraints { make in
+            make.top.equalTo(categoryCollectionView.snp.bottom).offset(16)
+            make.width.height.equalToSuperview()
+        }
     }
 }
 
