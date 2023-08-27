@@ -24,7 +24,7 @@
 		0C5858882A9A82FD0089D81B /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858872A9A82FD0089D81B /* NewsModel.swift */; };
 		0C5858932A9A8C310089D81B /* NewsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5858922A9A8C310089D81B /* NewsDetail.swift */; };
 		0CE519532A9B461900F33AAF /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE519512A9B461900F33AAF /* NewsViewController.swift */; };
-		0CE519542A9B461900F33AAF /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CE519522A9B461900F33AAF /* NewsViewController.xib */; };
+		0CE5195A2A9B4B9700F33AAF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0CE519592A9B4B9700F33AAF /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,6 @@
 		0C5858872A9A82FD0089D81B /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		0C5858922A9A8C310089D81B /* NewsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetail.swift; sourceTree = "<group>"; };
 		0CE519512A9B461900F33AAF /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		0CE519522A9B461900F33AAF /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C58587E2A9A7E270089D81B /* Alamofire in Frameworks */,
+				0CE5195A2A9B4B9700F33AAF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				0CE519512A9B461900F33AAF /* NewsViewController.swift */,
-				0CE519522A9B461900F33AAF /* NewsViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -316,6 +315,7 @@
 			name = NewsApp;
 			packageProductDependencies = (
 				0C58587D2A9A7E270089D81B /* Alamofire */,
+				0CE519592A9B4B9700F33AAF /* SnapKit */,
 			);
 			productName = NewsApp;
 			productReference = 0C5858292A9A6B7A0089D81B /* NewsApp.app */;
@@ -391,6 +391,7 @@
 			mainGroup = 0C5858202A9A6B7A0089D81B;
 			packageReferences = (
 				0C58587C2A9A7E270089D81B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0CE519582A9B4B9700F33AAF /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 0C58582A2A9A6B7A0089D81B /* Products */;
 			projectDirPath = "";
@@ -411,7 +412,6 @@
 				0C58586E2A9A77C40089D81B /* .swiftlint.yml in Resources */,
 				0C58583C2A9A6B7C0089D81B /* LaunchScreen.storyboard in Resources */,
 				0C5858392A9A6B7C0089D81B /* Assets.xcassets in Resources */,
-				0CE519542A9B461900F33AAF /* NewsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +815,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		0CE519582A9B4B9700F33AAF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -822,6 +830,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0C58587C2A9A7E270089D81B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		0CE519592A9B4B9700F33AAF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CE519582A9B4B9700F33AAF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
