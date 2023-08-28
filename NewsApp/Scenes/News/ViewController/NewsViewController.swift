@@ -19,11 +19,11 @@ final class NewsViewController: BaseViewController {
     // MARK: Create UI items
     private lazy var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-                    layout.scrollDirection = .horizontal
-                    let collectionView = UICollectionView(frame: .zero,
-                                                          collectionViewLayout: layout)
-                    collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                    return collectionView
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)
+        collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return collectionView
     }()
 
     private lazy var newsSourcesTableView: UITableView = {
@@ -103,17 +103,27 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.lightGray.cgColor
 
-        let category = viewModel.allCategories[viewModel.allCategories.index(viewModel.allCategories.startIndex, offsetBy: indexPath.row)]
-        cell.setCategorylist(title: category.rawValue)
+        let categoryArray = Array(viewModel.allCategories)
+        let selectedCategory = categoryArray[indexPath.row]
+        cell.setCategorylist(title: selectedCategory.rawValue)
+
+        let isSelected = viewModel.isCategorySelected(selectedCategory)
+        cell.setCheckmark(isSelected)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let cellWidth = collectionView.frame.width / 3
-            let cellHeight: CGFloat = 60
-            return CGSize(width: cellWidth, height: cellHeight)
-        }
+        let cellWidth = collectionView.frame.width / 3
+        let cellHeight: CGFloat = 60
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCategory = viewModel.allCategories[indexPath.row]
+        viewModel.toggleCategorySelection(selectedCategory)
+        collectionView.reloadData()
+    }
 }
 
 // MARK: NewsViewDelegate Delegate

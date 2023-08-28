@@ -44,13 +44,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(categoryImageView)
         contentView.addSubview(categoryTitleLabel)
 
-        categoryTitleLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        categoryTitleLabel.font = UIFont.boldSystemFont(ofSize: 9)
         categoryTitleLabel.sizeToFit()
 
         // MARK: - Constraints
         categoryImageView.snp.makeConstraints { make in
-
-            make.right.equalTo(categoryTitleLabel.snp.left).offset(-8)
+            make.left.equalToSuperview().offset(8)
             make.centerY.equalToSuperview()
             make.height.equalTo(16)
             make.width.equalTo(16)
@@ -59,6 +58,17 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             make.centerY.centerX.equalToSuperview()
         }
     }
+
+    // MARK: Set select image
+    func setCheckmark(_ isSelected: Bool) {
+        if isSelected {
+            categoryImageView.image = UIImage(systemName: "checkmark")
+        } else {
+            categoryImageView.image = UIImage(systemName: "plus")
+        }
+    }
+
+
 
     // MARK: Set category item
     func setCategorylist(title: String) {

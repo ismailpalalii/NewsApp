@@ -17,7 +17,10 @@ final class NewsViewModel {
     private let service: NetworkService
 
     var sourceList: [Source] = [] // News sources
-    var allCategories: Set<Category> = [] // All categories
+    var allCategories: [Category] = [] // All categories
+    var selectedCategories: [Category] = [] // Selected categories
+
+    private var originalSources: [Source] = [] // To keep the original sources
 
     init(view: NewsViewDelegate? = nil, service: NetworkService = NetworkService()) {
         self.view = view
@@ -25,7 +28,7 @@ final class NewsViewModel {
     }
 
     func getNewsSource() {
-        self.view?.showIndicator()
+        view?.showIndicator()
         service.fetchNews { [weak self] response in
             self?.view?.hideIndicator()
             guard let response = response else { return }
@@ -33,12 +36,18 @@ final class NewsViewModel {
             // Filter English language only
             let englishSources = response.sources.filter { $0.language == "en" }
             self?.sourceList = englishSources
+            self?.originalSources = englishSources
 
             // Extract all categories
             for source in response.sources {
                 let sourceCategory = source.category
-                self?.allCategories.insert(sourceCategory)
+                if !(self?.allCategories.contains(sourceCategory) ?? false) {
+                    self?.allCategories.append(sourceCategory)
+                }
             }
+
+            // Select all categories by default
+            self?.selectedCategories = []
 
             DispatchQueue.main.async {
                 self?.view?.reloadData()
@@ -46,6 +55,29 @@ final class NewsViewModel {
         }
     }
 
+    func toggleCategorySelection(_ category: Category) {
+        if selectedCategories.contains(category) {
+            selectedCategories.removeAll { $0 == category }
+        } else {
+            selectedCategories.append(category)
+        }
+        updateSourceList()
+    }
+
+    private func updateSourceList() {
+        if selectedCategories.isEmpty {
+            sourceList = originalSources
+        } else {
+            sourceList = originalSources.filter { source in
+                selectedCategories.contains(source.category)
+            }
+        }
+        view?.reloadData()
+    }
+
+    func isCategorySelected(_ category: Category) -> Bool {
+        return selectedCategories.contains(category)
+    }
 }
 
 extension NewsViewModel: NewsViewModelDelegate {
