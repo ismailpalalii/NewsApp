@@ -39,6 +39,8 @@ final class NewsViewController: BaseViewController {
         return indicator
     }()
 
+    private let refreshControl = UIRefreshControl()
+
     private var viewModel = NewsViewModel()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +62,9 @@ final class NewsViewController: BaseViewController {
         view.addSubview(categoryCollectionView)
         view.addSubview(newsSourcesTableView)
         view.addSubview(activityIndicator)
+
+        newsSourcesTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
         navigationItem.hidesBackButton = true
 
@@ -83,6 +88,10 @@ final class NewsViewController: BaseViewController {
 
         setTableView()
         setCollectionView()
+    }
+
+    @objc private func refreshData() {
+        viewModel.getNewsSource()
     }
 }
 
@@ -144,7 +153,9 @@ extension NewsViewController: NewsViewDelegate {
     func reloadData() {
         categoryCollectionView.reloadData()
         newsSourcesTableView.reloadData()
+
         activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
     }
 
     func setTableView() {
