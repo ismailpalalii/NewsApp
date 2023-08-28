@@ -109,6 +109,7 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         let isSelected = viewModel.isCategorySelected(selectedCategory)
         cell.setCheckmark(isSelected)
+        cell.backgroundColor = isSelected ? UIColor.lightGray : UIColor.white
 
         return cell
     }
