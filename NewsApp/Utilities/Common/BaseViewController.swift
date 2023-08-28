@@ -9,9 +9,6 @@ import UIKit
 
 class BaseViewController: UIViewController, BaseViewDelegate {
 
-    // MARK: Create UI items
-    let activityIndicator = UIActivityIndicatorView(style: .large)
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,13 +25,5 @@ extension BaseViewController {
         } else {
             self.present(viewController, animated: true, completion: nil)
         }
-    }
-
-    func showIndicator() {
-        activityIndicator.startAnimating()
-    }
-
-    func hideIndicator() {
-        activityIndicator.stopAnimating()
     }
 }

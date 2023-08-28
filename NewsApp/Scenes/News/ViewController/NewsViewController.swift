@@ -33,10 +33,17 @@ final class NewsViewController: BaseViewController {
         return tableView
     }()
 
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
     private var viewModel = NewsViewModel()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        activityIndicator.startAnimating()
         viewModel.getNewsSource()
     }
 
@@ -52,6 +59,7 @@ final class NewsViewController: BaseViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(categoryCollectionView)
         view.addSubview(newsSourcesTableView)
+        view.addSubview(activityIndicator)
 
         navigationItem.hidesBackButton = true
 
@@ -67,6 +75,10 @@ final class NewsViewController: BaseViewController {
             make.top.equalTo(categoryCollectionView.snp.bottom).offset(32)
             make.bottom.equalToSuperview().offset(8)
             make.width.equalToSuperview()
+        }
+
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
 
         setTableView()
@@ -132,6 +144,7 @@ extension NewsViewController: NewsViewDelegate {
     func reloadData() {
         categoryCollectionView.reloadData()
         newsSourcesTableView.reloadData()
+        activityIndicator.stopAnimating()
     }
 
     func setTableView() {
