@@ -2,7 +2,7 @@
 //  NewsViewModel.swift
 //  NewsApp
 //
-//  Created by İsmail Palalı on 27.08.2023.
+//  Created by İsmail Palalı on 27/08/2023.
 //
 
 import Foundation
@@ -14,10 +14,10 @@ protocol NewsViewModelDelegate: BaseViewModelDelegate {
 final class NewsViewModel {
 
     weak var view: NewsViewDelegate?
-    private let  service: NetworkService
+    private let service: NetworkService
 
-    var sourceList: [Source]? = []
-    var allCategories: [Category] = []
+    var sourceList: [Source] = [] // News sources
+    var allCategories: Set<Category> = [] // All categories
 
     init(view: NewsViewDelegate? = nil, service: NetworkService = NetworkService()) {
         self.view = view
@@ -30,20 +30,17 @@ final class NewsViewModel {
             self?.view?.hideIndicator()
             guard let response = response else { return }
 
-            var allCategories: Set<Category> = []
-
-            // MARK: Filter english language
+            // Filter English language only
             let englishSources = response.sources.filter { $0.language == "en" }
             self?.sourceList = englishSources
 
-            // MARK: Filter category list
+            // Extract all categories
             for source in response.sources {
-                let sourceCategory = source.category // This is a single Category value
-                allCategories.insert(sourceCategory)
+                let sourceCategory = source.category
+                self?.allCategories.insert(sourceCategory)
             }
 
             DispatchQueue.main.async {
-                // Now you can use allCategories as needed
                 self?.view?.reloadData()
             }
         }
@@ -51,8 +48,8 @@ final class NewsViewModel {
 
 }
 
-    extension NewsViewModel: NewsViewModelDelegate {
-        func viewWillAppear() {
-            getNewsSource()
-        }
+extension NewsViewModel: NewsViewModelDelegate {
+    func viewWillAppear() {
+        getNewsSource()
     }
+}

@@ -30,6 +30,7 @@ final class NewsSourcesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Cell Configure
     private func configure() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descLabel)
@@ -45,6 +46,7 @@ final class NewsSourcesTableViewCell: UITableViewCell {
         descLabel.font = UIFont.boldSystemFont(ofSize: 12)
         descLabel.sizeToFit()
 
+        // MARK: - Constraints
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.left.equalToSuperview().offset(8)
@@ -57,6 +59,7 @@ final class NewsSourcesTableViewCell: UITableViewCell {
         }
     }
 
+    // MARK: Set source item
     func setSourcelist(title: String, desc: String) {
         titleLabel.text = title
         descLabel.text = desc
