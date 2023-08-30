@@ -10,6 +10,8 @@ import SnapKit
 
 // MARK: NewsViewDelegate
 protocol NewsViewDelegate: BaseViewDelegate {
+    func setTableView()
+    func setCollectionView()
     func reloadData()
     func goDetailScreen(_ sourceList: Source)
 }
@@ -41,12 +43,14 @@ final class NewsViewController: BaseViewController {
 
     private let refreshControl = UIRefreshControl()
 
+    // MARK: ViewModel
     private var viewModel = NewsViewModel()
 
+    // MARK: lifeCycleInfo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.startAnimating()
-        viewModel.getNewsSource()
+        viewModel.viewWillAppear()
     }
 
     override func viewDidLoad() {
@@ -85,11 +89,9 @@ final class NewsViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-
-        setTableView()
-        setCollectionView()
     }
 
+    // MARK: Pull to refresh source list data
     @objc private func refreshData() {
         viewModel.getNewsSource()
     }

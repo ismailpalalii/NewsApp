@@ -7,8 +7,10 @@
 
 import UIKit
 
+// MARK: BaseViewController
 class BaseViewController: UIViewController, BaseViewDelegate {
 
+    // MARK: lifeCycleInfo 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("lifeCycleInfo viewWillAppear - \(Self.className)")
