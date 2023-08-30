@@ -33,6 +33,7 @@
 		0CEC67552A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC67542A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift */; };
 		0CEC67582A9D0FF80005C5DF /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC67572A9D0FF70005C5DF /* CategoryCollectionViewCell.swift */; };
 		0CF07BAA2A9F491E001406B0 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */; };
+		0CF07BAC2A9F55F6001406B0 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BAB2A9F55F6001406B0 /* NewsDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		0CEC67542A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourcesTableViewCell.swift; sourceTree = "<group>"; };
 		0CEC67572A9D0FF70005C5DF /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		0CF07BAB2A9F55F6001406B0 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +390,7 @@
 		0CF07BA82A9F48D1001406B0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0CF07BAB2A9F55F6001406B0 /* NewsDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				0C5858932A9A8C310089D81B /* NewsDetail.swift in Sources */,
 				0C58582D2A9A6B7A0089D81B /* AppDelegate.swift in Sources */,
 				0C5858372A9A6B7A0089D81B /* NewsApp.xcdatamodeld in Sources */,
+				0CF07BAC2A9F55F6001406B0 /* NewsDetailViewModel.swift in Sources */,
 				0C58582F2A9A6B7A0089D81B /* SceneDelegate.swift in Sources */,
 				0CE519612A9B55ED00F33AAF /* NewsViewModel.swift in Sources */,
 				0CEC67552A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift in Sources */,
