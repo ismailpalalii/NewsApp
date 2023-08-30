@@ -68,7 +68,9 @@ final class NewsDetailViewController: BaseViewController {
     var sourceID: String?
     var currentPage = 0
     var pullRefreshCount = 0
-    var timer: Timer?
+    var slideTimer: Timer?
+    var autoRefreshTimer: Timer?
+    var newsListCount = 0
 
     // MARK: ViewModel
     private var viewModel = NewsDetailViewModel()
@@ -94,7 +96,6 @@ final class NewsDetailViewController: BaseViewController {
         super.viewDidLoad()
         viewModel.view = self
         configure()
-        startAutoScrolling()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -152,16 +153,19 @@ final class NewsDetailViewController: BaseViewController {
             make.width.equalToSuperview().multipliedBy(0.30)
             make.height.equalToSuperview().multipliedBy(0.05)
         }
+
+        startAutoScrolling()
+        setupAutoRefreshTimer()
     }
 
     // MARK: Start scroll slide
     func startAutoScrolling() {
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
+        slideTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
     }
     // MARK: Stop scroll slide
     func stopAutoScrolling() {
-        timer?.invalidate()
-        timer = nil
+        slideTimer?.invalidate()
+        slideTimer = nil
     }
 
     // MARK: Check pullRefreshCount
@@ -174,6 +178,28 @@ final class NewsDetailViewController: BaseViewController {
                reloadData()
            }
        }
+
+    // Setup timer check new source list
+    private func setupAutoRefreshTimer() {
+        autoRefreshTimer = Timer.scheduledTimer(
+            timeInterval: 60.0,
+            target: self,
+            selector: #selector(autoRefreshTimerFired),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    // Check new source list
+    @objc private func autoRefreshTimerFired() {
+        let previousCount = newsListCount
+        viewModel.getNewsDetailList()
+        if previousCount != viewModel.sourceDetailList.count {
+            reloadData()
+        } else {
+            print("previous list count : \(previousCount) , new list count : \(viewModel.sourceDetailList.count)")
+        }
+    }
 
     @objc private func autoScroll() {
         let nextPage = (pageController.currentPage + 1) % pageController.numberOfPages
@@ -246,6 +272,8 @@ extension NewsDetailViewController: NewsDetailViewDelegate {
 
         activityIndicator.stopAnimating()
         refreshControl.endRefreshing()
+
+        newsListCount = viewModel.sourceDetailList.count
     }
 
     func setCollectionView() {
