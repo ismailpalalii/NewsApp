@@ -42,6 +42,12 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
             return button
         }()
 
+    let lineView: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            return view
+        }()
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,32 +65,43 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(newsTitleLabel)
         contentView.addSubview(newsDateLabel)
         contentView.addSubview(saveButton)
+        contentView.addSubview(lineView)
 
         newsTitleLabel.font = UIFont.boldSystemFont(ofSize: 9)
         newsTitleLabel.sizeToFit()
 
-        newsDateLabel.font = UIFont.boldSystemFont(ofSize: 6)
+        newsDateLabel.font = UIFont.boldSystemFont(ofSize: 9)
         newsTitleLabel.sizeToFit()
 
         // MARK: - Constraints
         newsImageView.snp.makeConstraints { make in
-            make.right.left.equalToSuperview().offset(8)
-            make.top.equalToSuperview().offset(4)
-            make.height.equalToSuperview().multipliedBy(0.60)
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(8)
+            make.height.equalToSuperview().multipliedBy(0.70)
+            make.width.equalToSuperview().multipliedBy(0.95)
         }
 
         newsTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(newsImageView.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(8)
+            make.width.equalToSuperview().multipliedBy(0.80)
         }
 
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(newsTitleLabel.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(8)
+            make.width.equalToSuperview().multipliedBy(0.40)
         }
 
         newsDateLabel.snp.makeConstraints { make in
-            make.top.equalTo(saveButton.snp.bottom).offset(4)
-            make.right.equalToSuperview().offset(4)
+            make.right.equalToSuperview().offset(-8)
+            make.top.equalTo(saveButton.snp.bottom).offset(2)
+        }
+
+        lineView.snp.makeConstraints { make in
+                    make.leading.trailing.equalToSuperview()
+                    make.bottom.equalToSuperview()
+                    make.height.equalTo(1)
+                    make.width.equalToSuperview()
         }
     }
 
@@ -105,7 +122,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
        DispatchQueue.main.async {
            self.newsImageView.kf.setImage(with: imageUrl)
            self.newsTitleLabel.text = news.title
-           //self.newsDateLabel.text = news.publishedAt.toString(format: "dd.MM.yyyy")
+           self.newsDateLabel.text = "02/02/2022"
        }
    }
 }

@@ -16,6 +16,7 @@ protocol NewsDetailViewDelegate: BaseViewDelegate {
 }
 
 final class NewsDetailViewController: BaseViewController {
+
     // MARK: Create UI items
     private lazy var sliderCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -88,14 +89,15 @@ final class NewsDetailViewController: BaseViewController {
         sliderCollectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.height.equalToSuperview().multipliedBy(0.40)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
         }
 
         newsListCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(sliderCollectionView.snp.bottom).offset(24)
+            make.top.equalTo(sliderCollectionView.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(8)
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
         }
 
         activityIndicator.snp.makeConstraints { make in
@@ -134,7 +136,7 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView == sliderCollectionView ? CGSize(width: 300, height: 300) : CGSize(width: 500, height: 500)
+        return collectionView == sliderCollectionView ? CGSize(width: collectionView.frame.width, height: collectionView.frame.height) : CGSize(width: collectionView.frame.width, height: collectionView.frame.height / 2 + 100)
     }
 
 }
