@@ -67,7 +67,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(saveButton)
         contentView.addSubview(lineView)
 
-        newsTitleLabel.font = UIFont.boldSystemFont(ofSize: 9)
+        newsTitleLabel.font = UIFont.boldSystemFont(ofSize: 10)
         newsTitleLabel.sizeToFit()
 
         newsDateLabel.font = UIFont.boldSystemFont(ofSize: 9)

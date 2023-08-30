@@ -58,6 +58,7 @@ final class NewsDetailViewController: BaseViewController {
     var sourceTitle: String?
     var sourceID: String?
     var currentPage = 0
+    var timer: Timer?
 
     // MARK: ViewModel
     private var viewModel = NewsDetailViewModel()
@@ -83,6 +84,12 @@ final class NewsDetailViewController: BaseViewController {
         super.viewDidLoad()
         viewModel.view = self
         configure()
+        startAutoScrolling()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopAutoScrolling()
     }
 
     // MARK: - UI Configure
@@ -122,6 +129,24 @@ final class NewsDetailViewController: BaseViewController {
             make.width.equalToSuperview().multipliedBy(0.30)
             make.height.equalToSuperview().multipliedBy(0.05)
         }
+    }
+
+    // MARK: Start scroll slide
+    func startAutoScrolling() {
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
+    }
+    // MARK: Stop scroll slide
+    func stopAutoScrolling() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    @objc private func autoScroll() {
+        let nextPage = (pageController.currentPage + 1) % pageController.numberOfPages
+        pageController.currentPage = nextPage
+
+        let offsetX = CGFloat(nextPage) * sliderCollectionView.bounds.width
+        sliderCollectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
     }
 
     // MARK: Pull to refresh source list data
