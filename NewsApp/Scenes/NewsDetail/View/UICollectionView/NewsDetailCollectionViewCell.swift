@@ -68,9 +68,10 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
 
         // MARK: - Constraints
         newsImageView.snp.makeConstraints { make in
-            make.top.right.left.equalToSuperview().offset(8)
-            make.height.equalTo(128)
-            make.width.equalTo(128)
+            make.right.left.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(4)
+            make.height.equalToSuperview().multipliedBy(0.60)
+            make.width.equalToSuperview()
         }
 
         newsTitleLabel.snp.makeConstraints { make in
@@ -104,7 +105,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
        DispatchQueue.main.async {
            self.newsImageView.kf.setImage(with: imageUrl)
            self.newsTitleLabel.text = news.title
-           self.newsDateLabel.text = news.publishedAt.toString(format: "dd.MM.yyyy")
+           //self.newsDateLabel.text = news.publishedAt.toString(format: "dd.MM.yyyy")
        }
    }
 }
