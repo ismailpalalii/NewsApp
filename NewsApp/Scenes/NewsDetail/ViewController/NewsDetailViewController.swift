@@ -18,6 +18,13 @@ protocol NewsDetailViewDelegate: BaseViewDelegate {
 final class NewsDetailViewController: BaseViewController {
 
     // MARK: Create UI items
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+
     private lazy var sliderCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -54,6 +61,7 @@ final class NewsDetailViewController: BaseViewController {
         }()
 
     private lazy var refreshControl = UIRefreshControl()
+    private lazy var contentView = UIView()
 
     var sourceTitle: String?
     var sourceID: String?
@@ -96,17 +104,30 @@ final class NewsDetailViewController: BaseViewController {
     private func configure() {
         title = sourceTitle
         view.backgroundColor = .systemBackground
-        view.addSubview(sliderCollectionView)
-        view.addSubview(newsListCollectionView)
-        view.addSubview(activityIndicator)
-        view.addSubview(pageController)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(sliderCollectionView)
+        contentView.addSubview(newsListCollectionView)
+        contentView.addSubview(activityIndicator)
+        contentView.addSubview(pageController)
 
         newsListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
         // MARK: Constraints
+
+        scrollView.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+            }
+
+        contentView.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(self.scrollView)
+            make.left.right.equalTo(self.view)
+            make.width.equalTo(self.scrollView)
+            make.height.equalTo(self.scrollView)
+        }
         sliderCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.top.equalToSuperview().offset(16)
             make.height.equalToSuperview().multipliedBy(0.40)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
