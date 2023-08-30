@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import UIKit
 
 // MARK: - ServiceProtocol
 protocol NetworkServiceProtocol: AnyObject {

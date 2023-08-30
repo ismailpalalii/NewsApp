@@ -13,6 +13,7 @@ protocol NewsDetailViewDelegate: BaseViewDelegate {
     func setCollectionView()
     func setSourceID()
     func reloadData()
+    func showRetryPopup(message: String)
 }
 
 final class NewsDetailViewController: BaseViewController {
@@ -52,13 +53,13 @@ final class NewsDetailViewController: BaseViewController {
     }()
 
     private lazy var pageController: UIPageControl = {
-            let page = UIPageControl()
-            page.numberOfPages = 3
-            page.currentPage = 0
-            page.pageIndicatorTintColor = UIColor.gray
-            page.currentPageIndicatorTintColor = UIColor.blue
-            return page
-        }()
+        let page = UIPageControl()
+        page.numberOfPages = 3
+        page.currentPage = 0
+        page.pageIndicatorTintColor = UIColor.gray
+        page.currentPageIndicatorTintColor = UIColor.blue
+        return page
+    }()
 
     private lazy var refreshControl = UIRefreshControl()
     private lazy var contentView = UIView()
@@ -66,6 +67,7 @@ final class NewsDetailViewController: BaseViewController {
     var sourceTitle: String?
     var sourceID: String?
     var currentPage = 0
+    var pullRefreshCount = 0
     var timer: Timer?
 
     // MARK: ViewModel
@@ -111,14 +113,14 @@ final class NewsDetailViewController: BaseViewController {
         contentView.addSubview(activityIndicator)
         contentView.addSubview(pageController)
 
-        newsListCollectionView.refreshControl = refreshControl
+        scrollView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
         // MARK: Constraints
 
         scrollView.snp.makeConstraints { make in
-                    make.edges.equalToSuperview()
-            }
+            make.edges.equalToSuperview()
+        }
 
         contentView.snp.makeConstraints { (make) in
             make.top.bottom.equalTo(self.scrollView)
@@ -162,6 +164,17 @@ final class NewsDetailViewController: BaseViewController {
         timer = nil
     }
 
+    // MARK: Check pullRefreshCount
+   func checkAndShowRetryPopup() {
+           pullRefreshCount += 1
+           if pullRefreshCount % 3 == 0 {
+               showRetryPopup(message: "Bilgileri alırken bir sorun oluştu. Lütfen tekrar deneyin.")
+           } else {
+               viewModel.getNewsDetailList()
+               reloadData()
+           }
+       }
+
     @objc private func autoScroll() {
         let nextPage = (pageController.currentPage + 1) % pageController.numberOfPages
         pageController.currentPage = nextPage
@@ -172,7 +185,7 @@ final class NewsDetailViewController: BaseViewController {
 
     // MARK: Pull to refresh source list data
     @objc private func refreshData() {
-        viewModel.getNewsDetailList()
+        checkAndShowRetryPopup()
     }
 }
 
@@ -189,15 +202,15 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
             cell.setNewsDetail(viewModel.topNews[indexPath.row])
-                return cell
-            } else if collectionView == newsListCollectionView {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsDetailCollectionViewCell.identifier, for: indexPath) as? NewsDetailCollectionViewCell else {
-                    return UICollectionViewCell()
-                }
-                cell.setNewsDetail(viewModel.sourceDetailList[indexPath.row])
-                    return cell
+            return cell
+        } else if collectionView == newsListCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsDetailCollectionViewCell.identifier, for: indexPath) as? NewsDetailCollectionViewCell else {
+                return UICollectionViewCell()
             }
-            return UICollectionViewCell()
+            cell.setNewsDetail(viewModel.sourceDetailList[indexPath.row])
+            return cell
+        }
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -205,12 +218,24 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-            pageController.currentPage = indexPath.row
-        }
+        pageController.currentPage = indexPath.row
+    }
 }
 
 // MARK: NewsDetailViewDelegate Delegate
 extension NewsDetailViewController: NewsDetailViewDelegate {
+    func showRetryPopup(message: String) {
+        let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+
+        let retryAction = UIAlertAction(title: "Tekrar Dene", style: .default) { _ in
+            self.viewModel.getNewsDetailList()
+        }
+
+        alert.addAction(retryAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
     func setSourceID() {
         viewModel.sourceID = sourceID ?? ""
     }

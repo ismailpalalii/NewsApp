@@ -12,22 +12,21 @@ protocol NewsDetailViewModelDelegate: BaseViewModelDelegate {
     var view: NewsDetailViewDelegate? { get set }
 }
 final class NewsDetailViewModel {
-    
+
     weak var view: NewsDetailViewDelegate?
     private let service: NetworkService
-    
+
     var sourceDetailList: [Article] = []
     var topNews: [Article] = []
     var sourceID = ""
-    
+
     init(view: NewsDetailViewDelegate? = nil, service: NetworkService = NetworkService()) {
         self.view = view
         self.service = service
     }
-    
+
     // MARK: Get News Detail Source List
     func getNewsDetailList() {
-        view?.showIndicator()
         service.fetchDetailNews(id: sourceID) { [weak self] response in
             self?.view?.hideIndicator()
             guard let response = response else { return }

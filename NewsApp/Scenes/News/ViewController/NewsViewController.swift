@@ -14,6 +14,7 @@ protocol NewsViewDelegate: BaseViewDelegate {
     func setCollectionView()
     func reloadData()
     func goDetailScreen(_ sourceList: Source)
+    func showRetryPopup(message: String)
 }
 
 final class NewsViewController: BaseViewController {
@@ -185,5 +186,17 @@ extension NewsViewController: NewsViewDelegate {
             controller,
             animated: true
         )
+    }
+
+    func showRetryPopup(message: String) {
+        let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+
+        let retryAction = UIAlertAction(title: "Tekrar Dene", style: .default) { _ in
+            self.viewModel.getNewsSource()
+        }
+
+        alert.addAction(retryAction)
+
+        present(alert, animated: true, completion: nil)
     }
 }
