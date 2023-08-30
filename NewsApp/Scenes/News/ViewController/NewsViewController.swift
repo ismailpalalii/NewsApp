@@ -25,6 +25,7 @@ final class NewsViewController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
         collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 

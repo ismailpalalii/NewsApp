@@ -92,7 +92,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         }
 
         newsDateLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-8)
+            make.right.equalToSuperview().offset(-32)
             make.top.equalTo(saveButton.snp.bottom).offset(2)
         }
 
