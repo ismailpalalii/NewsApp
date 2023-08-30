@@ -11,7 +11,7 @@ import SnapKit
 // MARK: NewsViewDelegate
 protocol NewsViewDelegate: BaseViewDelegate {
     func reloadData()
-    func goDetailScreen(with viewController: UIViewController)
+    func goDetailScreen(_ sourceList: Source)
 }
 
 final class NewsViewController: BaseViewController {
@@ -108,6 +108,10 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
                            desc:  viewModel.sourceList[indexPath.row].description ?? "")
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectItemAtTableview(indexPath)
+    }
 }
 
 // MARK: UICollectionView Delegate
@@ -172,7 +176,11 @@ extension NewsViewController: NewsViewDelegate {
         categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
     }
 
-    func goDetailScreen(with viewController: UIViewController) {
-        pushViewController(with: viewController)
+    func goDetailScreen(_ sourceList: Source) {
+        let controller = NewsDetailViewController(sourceTitle: sourceList.name, sourceID: sourceList.id)
+        navigationController?.pushViewController(
+            controller,
+            animated: true
+        )
     }
 }

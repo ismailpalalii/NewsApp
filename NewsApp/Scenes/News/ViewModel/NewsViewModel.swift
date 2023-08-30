@@ -78,6 +78,13 @@ final class NewsViewModel {
     func isCategorySelected(_ category: Category) -> Bool {
         return selectedCategories.contains(category)
     }
+
+    func didSelectItemAtTableview(
+            _ indexPath: IndexPath
+        ) {
+            let sourceDetail = sourceList[indexPath.row]
+            self.view?.goDetailScreen(sourceDetail)
+        }
 }
 
 extension NewsViewModel: NewsViewModelDelegate {
