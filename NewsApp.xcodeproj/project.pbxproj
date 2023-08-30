@@ -32,6 +32,7 @@
 		0CE519682A9B57DB00F33AAF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE519672A9B57DB00F33AAF /* Helper.swift */; };
 		0CEC67552A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC67542A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift */; };
 		0CEC67582A9D0FF80005C5DF /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC67572A9D0FF70005C5DF /* CategoryCollectionViewCell.swift */; };
+		0CF07BAA2A9F491E001406B0 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		0CE519672A9B57DB00F33AAF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0CEC67542A9BCCF00005C5DF /* NewsSourcesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourcesTableViewCell.swift; sourceTree = "<group>"; };
 		0CEC67572A9D0FF70005C5DF /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				0C5858652A9A6F600089D81B /* LaunchScreen */,
 				0CE519502A9B45EA00F33AAF /* News */,
+				0CF07BA52A9F4862001406B0 /* NewsDetail */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -284,9 +287,9 @@
 		0CE519502A9B45EA00F33AAF /* News */ = {
 			isa = PBXGroup;
 			children = (
-				0CE519572A9B47D000F33AAF /* ViewModel */,
-				0CE519562A9B47C800F33AAF /* ViewController */,
 				0CE519552A9B47C100F33AAF /* View */,
+				0CE519562A9B47C800F33AAF /* ViewController */,
+				0CE519572A9B47D000F33AAF /* ViewModel */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -355,6 +358,38 @@
 				0CEC67572A9D0FF70005C5DF /* CategoryCollectionViewCell.swift */,
 			);
 			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		0CF07BA52A9F4862001406B0 /* NewsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0CF07BA62A9F48C2001406B0 /* View */,
+				0CF07BA72A9F48C8001406B0 /* ViewController */,
+				0CF07BA82A9F48D1001406B0 /* ViewModel */,
+			);
+			path = NewsDetail;
+			sourceTree = "<group>";
+		};
+		0CF07BA62A9F48C2001406B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0CF07BA72A9F48C8001406B0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0CF07BA82A9F48D1001406B0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,6 +558,7 @@
 				0CEC67582A9D0FF80005C5DF /* CategoryCollectionViewCell.swift in Sources */,
 				0C58587B2A9A7DE30089D81B /* NetworkService.swift in Sources */,
 				0CE5195D2A9B511000F33AAF /* BaseViewDelegate.swift in Sources */,
+				0CF07BAA2A9F491E001406B0 /* NewsDetailViewController.swift in Sources */,
 				0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */,
 				0CE519652A9B572700F33AAF /* BaseViewController.swift in Sources */,
 				0CE519532A9B461900F33AAF /* NewsViewController.swift in Sources */,
