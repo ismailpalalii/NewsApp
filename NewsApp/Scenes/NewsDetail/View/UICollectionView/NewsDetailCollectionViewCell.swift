@@ -75,7 +75,6 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
 
         // MARK: - Constraints
         newsImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(8)
             make.height.equalToSuperview().multipliedBy(0.70)
             make.width.equalToSuperview().multipliedBy(0.95)
         }

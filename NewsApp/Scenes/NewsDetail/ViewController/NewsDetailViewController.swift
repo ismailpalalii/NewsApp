@@ -24,6 +24,8 @@ final class NewsDetailViewController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
         collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
         return collectionView
     }()
 
@@ -42,10 +44,20 @@ final class NewsDetailViewController: BaseViewController {
         return indicator
     }()
 
-    private let refreshControl = UIRefreshControl()
+    private lazy var pageController: UIPageControl = {
+            let page = UIPageControl()
+            page.numberOfPages = 3
+            page.currentPage = 0
+            page.pageIndicatorTintColor = UIColor.gray
+            page.currentPageIndicatorTintColor = UIColor.blue
+            return page
+        }()
+
+    private lazy var refreshControl = UIRefreshControl()
 
     var sourceTitle: String?
     var sourceID: String?
+    var currentPage = 0
 
     // MARK: ViewModel
     private var viewModel = NewsDetailViewModel()
@@ -80,9 +92,9 @@ final class NewsDetailViewController: BaseViewController {
         view.addSubview(sliderCollectionView)
         view.addSubview(newsListCollectionView)
         view.addSubview(activityIndicator)
+        view.addSubview(pageController)
 
         newsListCollectionView.refreshControl = refreshControl
-        sliderCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
         // MARK: Constraints
@@ -94,7 +106,7 @@ final class NewsDetailViewController: BaseViewController {
         }
 
         newsListCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(sliderCollectionView.snp.bottom).offset(8)
+            make.top.equalTo(pageController.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(8)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
@@ -102,6 +114,13 @@ final class NewsDetailViewController: BaseViewController {
 
         activityIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+
+        pageController.snp.makeConstraints { make in
+            make.top.equalTo(sliderCollectionView.snp.bottom).offset(-32)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.30)
+            make.height.equalToSuperview().multipliedBy(0.05)
         }
     }
 
@@ -139,6 +158,9 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         return collectionView == sliderCollectionView ? CGSize(width: collectionView.frame.width, height: collectionView.frame.height) : CGSize(width: collectionView.frame.width, height: collectionView.frame.height / 2 + 100)
     }
 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            pageController.currentPage = indexPath.row
+        }
 }
 
 // MARK: NewsDetailViewDelegate Delegate
