@@ -61,9 +61,17 @@ final class NewsDetailViewModel {
     }
 
     func fetchData() -> [SaveNews]? {
-
-            coreDataService.fetchData()
+        coreDataService.fetchData()
     }
+
+    func toggleReadingListStatus(for news: Article) {
+        if let existingNews = fetchData()?.first(where: { $0.title == news.title }) {
+            coreDataService.deleteData(title: existingNews.title ?? "")
+        } else {
+            saveToCoreData(title: news.title ?? "")
+        }
+    }
+
 }
 
 // MARK: NewsDetailViewModelDelegate

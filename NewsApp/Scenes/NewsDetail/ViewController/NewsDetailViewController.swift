@@ -216,11 +216,12 @@ final class NewsDetailViewController: BaseViewController {
     }
 
     @objc func saveButtonTapped(_ sender: UIButton) {
-            let indexPath = IndexPath(row: sender.tag, section: 0)
-            if let title = viewModel.topNews[indexPath.row].title {
-                viewModel.saveToCoreData(title: title)
-            }
-        }
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let selectedNews = viewModel.topNews[indexPath.row]
+
+        viewModel.toggleReadingListStatus(for: selectedNews)
+        sliderCollectionView.reloadData()
+    }
 }
 
 // MARK: UICollectionView Delegate
