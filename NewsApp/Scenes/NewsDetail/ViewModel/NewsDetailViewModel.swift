@@ -35,12 +35,16 @@ final class NewsDetailViewModel {
         service.fetchDetailNews(id: sourceID) { [weak self] response in
             self?.view?.hideIndicator()
             guard let response = response else { return }
-            if let articles = response.articles, articles.count >= 3 {
-                self?.sourceDetailList = Array(articles.dropFirst(3))
-                self?.topNews = Array(articles.prefix(3))
+
+            // Sort articles by date in descending order
+            let sortedArticles = response.articles?.sorted(by: { $0.formattedPublishedDate() > $1.formattedPublishedDate() }) ?? []
+
+            if sortedArticles.count >= 3 {
+                self?.sourceDetailList = Array(sortedArticles.dropFirst(3))
+                self?.topNews = Array(sortedArticles.prefix(3))
             } else {
                 self?.sourceDetailList = []
-                self?.topNews = response.articles ?? []
+                self?.topNews = sortedArticles
             }
             DispatchQueue.main.async {
                 self?.view?.reloadData()
