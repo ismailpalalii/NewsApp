@@ -215,12 +215,20 @@ final class NewsDetailViewController: BaseViewController {
         checkAndShowRetryPopup()
     }
 
-    @objc func saveButtonTapped(_ sender: UIButton) {
+    @objc func saveSlideItems(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let selectedNews = viewModel.topNews[indexPath.row]
 
         viewModel.toggleReadingListStatus(for: selectedNews)
-        sliderCollectionView.reloadData()
+        reloadData()
+    }
+
+    @objc func saveNewsItems(_ sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let selectedNews = viewModel.sourceDetailList[indexPath.row]
+
+        viewModel.toggleReadingListStatus(for: selectedNews)
+        reloadData()
     }
 }
 
@@ -238,7 +246,7 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             }
             cell.setNewsDetail(viewModel.topNews[indexPath.row])
             cell.saveButton.tag = indexPath.row
-            cell.saveButton.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
+            cell.saveButton.addTarget(self, action: #selector(saveSlideItems(_:)), for: .touchUpInside)
             if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.topNews[indexPath.row].title }) {
                 if !data.isEmpty {
                     cell.saveButton.setTitle("Okuma Listesinden Cikar", for: .normal)
@@ -252,6 +260,15 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
             cell.setNewsDetail(viewModel.sourceDetailList[indexPath.row])
+            cell.saveButton.tag = indexPath.row
+            cell.saveButton.addTarget(self, action: #selector(saveNewsItems(_:)), for: .touchUpInside)
+            if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.sourceDetailList[indexPath.row].title }) {
+                if !data.isEmpty {
+                    cell.saveButton.setTitle("Okuma Listesinden Cikar", for: .normal)
+                } else {
+                    cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
+                }
+            }
             return cell
         }
         return UICollectionViewCell()
