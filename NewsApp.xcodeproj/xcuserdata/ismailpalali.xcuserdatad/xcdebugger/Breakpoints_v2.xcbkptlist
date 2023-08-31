@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "60EAF68D-D363-4A82-A40D-D670F01DA014"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/Scenes/NewsDetail/ViewModel/NewsDetailViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "saveToCoreData(title:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "60EAF68D-D363-4A82-A40D-D670F01DA014 - 9f5534ec0c4bf44a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NewsApp.NewsDetailViewModel.saveToCoreData(title: Swift.String, id: Foundation.UUID) -&gt; ()"
-                  moduleName = "NewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ismailpalali/NewsApp/NewsApp/Scenes/NewsDetail/ViewModel/NewsDetailViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "61">
-               </Location>
-               <Location
-                  uuid = "60EAF68D-D363-4A82-A40D-D670F01DA014 - d95743d515cccbae"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NewsApp.NewsDetailViewModel.saveToCoreData(title: Swift.String) -&gt; ()"
-                  moduleName = "NewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ismailpalali/NewsApp/NewsApp/Scenes/NewsDetail/ViewModel/NewsDetailViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "45">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EFAE1229-B54D-472E-9492-963BE9BD9BB7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

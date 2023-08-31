@@ -96,19 +96,13 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private func updateButtonTitle(isSelected: Bool) {
-            let title = isSelected ? "Okuma Listemden Çıkar" : "Okuma Listeme Ekle"
-            saveButton.setTitle(title, for: .normal)
-        }
-
     // MARK: Set news detail items
-    func setNewsDetail(_ news: Article, isSaved: Bool = false) {
-        guard let newsPosterPath = news.urlToImage, let imageUrl = URL(string: newsPosterPath) else {
+    func setNewsDetail(_ news: Article?, isSaved: Bool = false) {
+        guard let newsPosterPath = news?.urlToImage, let imageUrl = URL(string: newsPosterPath) else {
             return
         }
         newsImageView.kf.setImage(with: imageUrl)
-        newsTitleLabel.text = news.title
-        newsDateLabel.text = "02/02/2022"
-        updateButtonTitle(isSelected: isSelected)
+        newsTitleLabel.text = news?.title
+        newsDateLabel.text = news?.formattedPublishedDate()
     }
 }

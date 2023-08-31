@@ -36,11 +36,11 @@
 		0CF07BAC2A9F55F6001406B0 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BAB2A9F55F6001406B0 /* NewsDetailViewModel.swift */; };
 		0CF07BAF2A9F56C7001406B0 /* NewsDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BAE2A9F56C7001406B0 /* NewsDetailCollectionViewCell.swift */; };
 		0CF07BB22A9F5A1E001406B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0CF07BB12A9F5A1E001406B0 /* Kingfisher */; };
-		0CF07BB42A9F5DBE001406B0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BB32A9F5DBE001406B0 /* Date+Extension.swift */; };
 		0CF07BBC2A9FA22C001406B0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BBB2A9FA22C001406B0 /* CoreDataManager.swift */; };
 		0CF07BBF2A9FA2B7001406B0 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BBE2A9FA2B7001406B0 /* CoreDataService.swift */; };
 		0CF07BC62AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */; };
 		0CF07BC72AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */; };
+		0CF07BC92AA10CD6001406B0 /* Article+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BC82AA10CD6001406B0 /* Article+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,11 +91,11 @@
 		0CF07BA92A9F491E001406B0 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		0CF07BAB2A9F55F6001406B0 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
 		0CF07BAE2A9F56C7001406B0 /* NewsDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		0CF07BB32A9F5DBE001406B0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0CF07BBB2A9FA22C001406B0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0CF07BBE2A9FA2B7001406B0 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SaveNews+CoreDataClass.swift"; path = "NewsApp/Utilities/Data/CoreData/Models/SaveNews+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SaveNews+CoreDataProperties.swift"; path = "NewsApp/Utilities/Data/CoreData/Models/SaveNews+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0CF07BC82AA10CD6001406B0 /* Article+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,7 +361,7 @@
 		0CEC674C2A9BB5A20005C5DF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				0CF07BB32A9F5DBE001406B0 /* Date+Extension.swift */,
+				0CF07BC82AA10CD6001406B0 /* Article+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -618,10 +618,10 @@
 				0CF07BBC2A9FA22C001406B0 /* CoreDataManager.swift in Sources */,
 				0CF07BAA2A9F491E001406B0 /* NewsDetailViewController.swift in Sources */,
 				0C5858792A9A7DC10089D81B /* NetworkManager.swift in Sources */,
+				0CF07BC92AA10CD6001406B0 /* Article+Extension.swift in Sources */,
 				0CE519652A9B572700F33AAF /* BaseViewController.swift in Sources */,
 				0CE519532A9B461900F33AAF /* NewsViewController.swift in Sources */,
 				0C5858932A9A8C310089D81B /* NewsDetail.swift in Sources */,
-				0CF07BB42A9F5DBE001406B0 /* Date+Extension.swift in Sources */,
 				0C58582D2A9A6B7A0089D81B /* AppDelegate.swift in Sources */,
 				0CF07BC72AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift in Sources */,
 				0C5858372A9A6B7A0089D81B /* NewsApp.xcdatamodeld in Sources */,
