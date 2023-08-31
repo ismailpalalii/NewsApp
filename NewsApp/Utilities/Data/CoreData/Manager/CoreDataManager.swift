@@ -1,26 +1,19 @@
-//
-//  CoreDataManager.swift
-//  NewsApp
-//
-//  Created by İsmail Palalı on 30.08.2023.
-//
-
 import CoreData
+import UIKit
 
 class CoreDataManager {
+
     static let shared = CoreDataManager()
 
-    private init() {}
+    let persistentContainer: NSPersistentContainer
 
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "NewsApp")
-        container.loadPersistentStores { (_, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-        return container
-    }()
+    init() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    fatalError("AppDelegate bulunamadı.")
+                }
+
+                persistentContainer = appDelegate.persistentContainer
+    }
 
     func saveContext() {
         let context = persistentContainer.viewContext
@@ -33,5 +26,21 @@ class CoreDataManager {
             }
         }
     }
-}
 
+    func fetchData<T: NSManagedObject>(_ type: T.Type) -> [T]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<T> = NSFetchRequest<T>(entityName: String(describing: T.self))
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Error fetching data: \(error)")
+            return nil
+        }
+    }
+
+    func deleteObject(_ object: NSManagedObject) {
+        let context = persistentContainer.viewContext
+        context.delete(object)
+        saveContext()
+    }
+}

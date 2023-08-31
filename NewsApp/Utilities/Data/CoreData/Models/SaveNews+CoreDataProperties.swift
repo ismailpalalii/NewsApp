@@ -16,7 +16,8 @@ extension SaveNews {
         return NSFetchRequest<SaveNews>(entityName: "SaveNews")
     }
 
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
+    @NSManaged public var id: UUID
 
 }
 

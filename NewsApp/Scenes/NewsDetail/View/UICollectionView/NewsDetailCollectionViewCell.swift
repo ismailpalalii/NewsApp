@@ -34,24 +34,20 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    let saveButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("Okuma Listeme Ekle", for: .normal)
-            button.addTarget(NewsDetailCollectionViewCell.self, action: #selector(saveButtonTapped), for: .touchUpInside)
-            return button
-        }()
+     let saveButton: UIButton = {
+         let button = UIButton(type: .system)
+        return button
+    }()
 
-    let lineView: UIView = {
-            let view = UIView()
-            view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-            return view
-        }()
+    private let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        return view
+    }()
 
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         configure()
     }
 
@@ -68,11 +64,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(lineView)
 
         newsTitleLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        newsTitleLabel.sizeToFit()
-
         newsDateLabel.font = UIFont.boldSystemFont(ofSize: 9)
-        newsTitleLabel.sizeToFit()
-
         // MARK: - Constraints
         newsImageView.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.70)
@@ -87,8 +79,8 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
 
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(newsTitleLabel.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(8)
-            make.width.equalToSuperview().multipliedBy(0.40)
+            make.left.equalToSuperview().offset(-16)
+            make.width.equalToSuperview().multipliedBy(0.55)
         }
 
         newsDateLabel.snp.makeConstraints { make in
@@ -97,31 +89,26 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         }
 
         lineView.snp.makeConstraints { make in
-                    make.leading.trailing.equalToSuperview()
-                    make.bottom.equalToSuperview()
-                    make.height.equalTo(1)
-                    make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+            make.width.equalToSuperview()
         }
     }
 
-    // MARK: Save news item
-    @objc func saveButtonTapped() {
-            print("Button Tapped!")
+    private func updateButtonTitle(isSelected: Bool) {
+            let title = isSelected ? "Okuma Listemden Çıkar" : "Okuma Listeme Ekle"
+            saveButton.setTitle(title, for: .normal)
         }
 
     // MARK: Set news detail items
-
-    func setNewsDetail(_ news: Article) {
-       guard let newsPosterPath = news.urlToImage else {
-           return
-       }
-       guard let imageUrl = URL(string: "\(newsPosterPath)") else {
-           return
-       }
-       DispatchQueue.main.async {
-           self.newsImageView.kf.setImage(with: imageUrl)
-           self.newsTitleLabel.text = news.title
-           self.newsDateLabel.text = "02/02/2022"
-       }
-   }
+    func setNewsDetail(_ news: Article, isSaved: Bool = false) {
+        guard let newsPosterPath = news.urlToImage, let imageUrl = URL(string: newsPosterPath) else {
+            return
+        }
+        newsImageView.kf.setImage(with: imageUrl)
+        newsTitleLabel.text = news.title
+        newsDateLabel.text = "02/02/2022"
+        updateButtonTitle(isSelected: isSelected)
+    }
 }

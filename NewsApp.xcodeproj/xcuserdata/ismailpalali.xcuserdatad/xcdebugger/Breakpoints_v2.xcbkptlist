@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7E4DF88C-0CA3-4A5C-AEC5-A5F25FD08942"
+            uuid = "66637ACC-BDE4-4B1F-A9B5-6A371EFFB86B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewsApp/Scenes/NewsDetail/ViewController/NewsDetailViewController.swift"
+            filePath = "NewsApp/Utilities/Data/CoreData/Service/CoreDataService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "autoRefreshTimerFired()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6E9ADC53-03FE-4B20-ADC9-45963F2F63CD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/Scenes/NewsDetail/ViewController/NewsDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "autoRefreshTimerFired()"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "saveData(title:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

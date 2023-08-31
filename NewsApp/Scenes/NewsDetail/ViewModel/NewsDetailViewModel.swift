@@ -15,13 +15,18 @@ final class NewsDetailViewModel {
 
     weak var view: NewsDetailViewDelegate?
     private let service: NetworkService
+    private var coreDataService: CoreDataService
+
 
     var sourceDetailList: [Article] = []
     var topNews: [Article] = []
     var sourceID = ""
 
-    init(view: NewsDetailViewDelegate? = nil, service: NetworkService = NetworkService()) {
+    init(view: NewsDetailViewDelegate? = nil,
+         service: NetworkService = NetworkService(),
+         coreDataService: CoreDataService = CoreDataService()) {
         self.view = view
+        self.coreDataService = coreDataService
         self.service = service
     }
 
