@@ -71,6 +71,7 @@ final class NewsDetailViewController: BaseViewController {
     var slideTimer: Timer?
     var autoRefreshTimer: Timer?
     var newsListCount = 0
+    var selectedTitle: String?
 
     // MARK: ViewModel
     private var viewModel = NewsDetailViewModel()
@@ -213,6 +214,13 @@ final class NewsDetailViewController: BaseViewController {
     @objc private func refreshData() {
         checkAndShowRetryPopup()
     }
+
+    @objc func saveButtonTapped(_ sender: UIButton) {
+            let indexPath = IndexPath(row: sender.tag, section: 0)
+            if let title = viewModel.topNews[indexPath.row].title {
+                viewModel.saveToCoreData(title: title)
+            }
+        }
 }
 
 // MARK: UICollectionView Delegate
@@ -228,6 +236,15 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
             cell.setNewsDetail(viewModel.topNews[indexPath.row])
+            cell.saveButton.tag = indexPath.row
+            cell.saveButton.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
+            if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.topNews[indexPath.row].title }) {
+                if !data.isEmpty {
+                    cell.saveButton.setTitle("Okuma Listesinden Cikar", for: .normal)
+                } else {
+                    cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
+                }
+            }
             return cell
         } else if collectionView == newsListCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsDetailCollectionViewCell.identifier, for: indexPath) as? NewsDetailCollectionViewCell else {

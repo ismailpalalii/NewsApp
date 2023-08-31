@@ -3,7 +3,7 @@ import CoreData
 protocol CoreDataServiceProtocol {
     func fetchData() -> [SaveNews]?
     func saveData(title: String)
-    func deleteData(id: UUID)
+    func deleteData(title: String)
 }
 
 class CoreDataService: CoreDataServiceProtocol {
@@ -22,8 +22,8 @@ class CoreDataService: CoreDataServiceProtocol {
         print(news)
     }
 
-    func deleteData(id: UUID) {
-        if let news = fetchData(), let newsToDelete = news.first(where: { $0.id == id }) {
+    func deleteData(title: String) {
+        if let news = fetchData(), let newsToDelete = news.first(where: { $0.title == title }) {
             coreDataManager.deleteObject(newsToDelete)
         }
     }

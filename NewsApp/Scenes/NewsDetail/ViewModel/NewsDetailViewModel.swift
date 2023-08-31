@@ -47,6 +47,23 @@ final class NewsDetailViewModel {
             }
         }
     }
+
+    func isItemSaved(id: UUID) -> Bool {
+            return false
+        }
+
+    func saveToCoreData(title: String) {
+        coreDataService.saveData(title: title)
+    }
+
+    func deleteToCoreData(title: String) {
+        coreDataService.deleteData(title: title)
+    }
+
+    func fetchData() -> [SaveNews]? {
+
+            coreDataService.fetchData()
+    }
 }
 
 // MARK: NewsDetailViewModelDelegate
