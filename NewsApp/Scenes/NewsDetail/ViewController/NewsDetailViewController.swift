@@ -101,7 +101,6 @@ final class NewsDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.view = self
         configure()
     }
 
@@ -157,7 +156,7 @@ final class NewsDetailViewController: BaseViewController {
         pageController.snp.makeConstraints { make in
             make.top.equalTo(sliderCollectionView.snp.bottom).offset(-32)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.30)
+            make.width.equalToSuperview().multipliedBy(0.45)
             make.height.equalToSuperview().multipliedBy(0.05)
         }
 
@@ -255,10 +254,21 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.saveButton.addTarget(self, action: #selector(saveSlideItems(_:)), for: .touchUpInside)
             if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.topNews[indexPath.row].title }) {
                 if !data.isEmpty {
-                    cell.saveButton.setTitle("Okuma Listesinden Cikar", for: .normal)
+                    let attributedTitle = NSAttributedString(
+                        string: "Okuma Listesinden Çıkar",
+                        attributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+                            NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]
+                    )
+                    cell.saveButton.setAttributedTitle(attributedTitle, for: .normal)
                 } else {
                     cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
+                    cell.saveButton.setTitleColor(.gray, for: .normal)
+                    cell.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
                 }
+
             }
             return cell
         } else if collectionView == newsListCollectionView {
@@ -270,10 +280,21 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.saveButton.addTarget(self, action: #selector(saveNewsItems(_:)), for: .touchUpInside)
             if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.sourceDetailList[indexPath.row].title }) {
                 if !data.isEmpty {
-                    cell.saveButton.setTitle("Okuma Listesinden Cikar", for: .normal)
+                    let attributedTitle = NSAttributedString(
+                        string: "Okuma Listesinden Çıkar",
+                        attributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+                            NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]
+                    )
+                    cell.saveButton.setAttributedTitle(attributedTitle, for: .normal)
                 } else {
                     cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
+                    cell.saveButton.setTitleColor(.gray, for: .normal)
+                    cell.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
                 }
+
             }
             return cell
         }

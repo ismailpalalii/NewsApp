@@ -79,8 +79,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
 
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(newsTitleLabel.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(-16)
-            make.width.equalToSuperview().multipliedBy(0.55)
+            make.left.equalToSuperview().offset(2)
         }
 
         newsDateLabel.snp.makeConstraints { make in
