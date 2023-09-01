@@ -48,18 +48,22 @@ final class NewsViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
 
     // MARK: ViewModel
-    private var viewModel = NewsViewModel()
+    private var networkService: NetworkServiceProtocol!
+    private var viewModel: NewsViewModel!
 
     // MARK: lifeCycleInfo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.startAnimating()
+
+        networkService = NetworkService()
+        viewModel = NewsViewModel(service: networkService)
+        viewModel.view = self
         viewModel.viewWillAppear()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.view = self
         configure()
     }
 
