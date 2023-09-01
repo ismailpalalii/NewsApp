@@ -13,7 +13,7 @@ protocol NewsDetailViewDelegate: BaseViewDelegate {
     func setCollectionView()
     func setSourceID()
     func reloadData()
-    func showRetryPopup(title:String, message: String)
+    func showRetryPopup(title: String, message: String)
     func hideIndicator()
     func showIndicator()
 }
@@ -76,7 +76,8 @@ final class NewsDetailViewController: BaseViewController {
     var selectedTitle: String?
 
     // MARK: ViewModel
-    private var viewModel = NewsDetailViewModel()
+    private var networkService: NetworkServiceProtocol!
+    private var viewModel: NewsDetailViewModel!
 
     init(sourceTitle: String? = nil, sourceID: String? = nil) {
         self.sourceTitle = sourceTitle
@@ -92,6 +93,9 @@ final class NewsDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.startAnimating()
+        networkService = NetworkService()
+        viewModel = NewsDetailViewModel(service: networkService)
+        viewModel.view = self
         viewModel.viewWillAppear()
     }
 

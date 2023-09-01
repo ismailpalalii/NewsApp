@@ -14,7 +14,7 @@ protocol NewsDetailViewModelDelegate: BaseViewModelDelegate {
 final class NewsDetailViewModel {
 
     weak var view: NewsDetailViewDelegate?
-    private let service: NetworkService
+    private let service: NetworkServiceProtocol
     private var coreDataService: CoreDataService
 
     var sourceDetailList: [Article] = []
@@ -22,7 +22,7 @@ final class NewsDetailViewModel {
     var sourceID = ""
 
     init(view: NewsDetailViewDelegate? = nil,
-         service: NetworkService = NetworkService(),
+         service: NetworkServiceProtocol,
          coreDataService: CoreDataService = CoreDataService()) {
         self.view = view
         self.coreDataService = coreDataService

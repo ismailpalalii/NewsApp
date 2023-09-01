@@ -15,7 +15,7 @@ protocol NewsViewModelDelegate: BaseViewModelDelegate {
 final class NewsViewModel {
 
     weak var view: NewsViewDelegate?
-    private let service: NetworkService
+    private let service: NetworkServiceProtocol
 
     var sourceList: [Source] = [] // News sources
     var allCategories: [Category] = [] // All categories
@@ -23,7 +23,7 @@ final class NewsViewModel {
 
     private var originalSources: [Source] = [] // To keep the original sources
 
-    init(view: NewsViewDelegate? = nil, service: NetworkService = NetworkService()) {
+    init(view: NewsViewDelegate? = nil, service: NetworkServiceProtocol) {
         self.view = view
         self.service = service
     }
