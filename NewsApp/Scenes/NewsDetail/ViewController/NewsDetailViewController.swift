@@ -257,15 +257,9 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.saveButton.addTarget(self, action: #selector(saveSlideItems(_:)), for: .touchUpInside)
             if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.topNews[indexPath.row].title }) {
                 if !data.isEmpty {
-                    let attributedTitle = NSAttributedString(
-                        string: "Okuma Listesinden Çıkar",
-                        attributes: [
-                            NSAttributedString.Key.foregroundColor: UIColor.darkGray,
-                            NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
-                        ]
-                    )
-                    cell.saveButton.setAttributedTitle(attributedTitle, for: .normal)
+                    cell.saveButton.setTitle("Okuma Listesinden Çıkar", for: .normal)
+                    cell.saveButton.setTitleColor(.black, for: .normal)
+                    cell.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
                 } else {
                     cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
                     cell.saveButton.setTitleColor(.gray, for: .normal)
@@ -283,21 +277,14 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.saveButton.addTarget(self, action: #selector(saveNewsItems(_:)), for: .touchUpInside)
             if let data = viewModel.fetchData()?.filter({ $0.title == viewModel.sourceDetailList[indexPath.row].title }) {
                 if !data.isEmpty {
-                    let attributedTitle = NSAttributedString(
-                        string: "Okuma Listesinden Çıkar",
-                        attributes: [
-                            NSAttributedString.Key.foregroundColor: UIColor.darkGray,
-                            NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
-                        ]
-                    )
-                    cell.saveButton.setAttributedTitle(attributedTitle, for: .normal)
+                    cell.saveButton.setTitle("Okuma Listesinden Çıkar", for: .normal)
+                    cell.saveButton.setTitleColor(.black, for: .normal)
+                    cell.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
                 } else {
                     cell.saveButton.setTitle("Okuma Listesine Ekle", for: .normal)
                     cell.saveButton.setTitleColor(.gray, for: .normal)
                     cell.saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
                 }
-
             }
             return cell
         }
