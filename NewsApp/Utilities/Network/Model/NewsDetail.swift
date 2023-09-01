@@ -5,27 +5,6 @@
 //  Created by İsmail Palalı on 26.08.2023.
 //
 
-//import Foundation
-//// MARK: - NewsDetail
-//struct NewsDetail: Codable {
-//    let articles: [Article]?
-//}
-//
-//// MARK: - Article
-//struct Article: Codable {
-//    let author: String?
-//    let title, articleDescription: String?
-//    //let publishedAt: Date
-//    let url: String?
-//    let urlToImage: String?
-//    let content: String?
-//}
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let newsDetailModel = try? JSONDecoder().decode(NewsDetailModel.self, from: jsonData)
-
 import Foundation
 
 // MARK: - NewsDetailModel
@@ -54,7 +33,7 @@ extension NewsDetail {
                     title: "Gabon coup: Army seizes power from Ali Bongo and puts him in house arrest",
                     description: "Gabon's President Ali Bongo has appealed for help after the army deposed him in a coup.",
                     url: "http://www.bbc.co.uk/news/world-africa-66654965",
-                    urlToImage:
+                urlToImage:
                         "https://ichef.bbci.co.uk/news/1024/branded_news/70F2/production/_130941982_23850be5d329579675dae1348e849cf77a7fe9b20_0_4256_28321000x665.jpg",
                     publishedAt: "2023-08-30T17:07:26.0665475Z"
                 ),

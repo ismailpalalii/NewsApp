@@ -36,6 +36,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -71,6 +72,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
 
     // MARK: Set category item
     func setCategorylist(title: String) {
-        categoryTitleLabel.text =  title
+        categoryTitleLabel.text = title
     }
 }
