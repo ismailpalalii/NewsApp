@@ -227,7 +227,7 @@ final class NewsDetailViewController: BaseViewController {
         let selectedNews = viewModel.topNews[indexPath.row]
 
         viewModel.toggleReadingListStatus(for: selectedNews)
-        reloadData()
+        sliderCollectionView.reloadData()
     }
 
     // MARK: saveNewsItems
@@ -236,7 +236,7 @@ final class NewsDetailViewController: BaseViewController {
         let selectedNews = viewModel.sourceDetailList[indexPath.row]
 
         viewModel.toggleReadingListStatus(for: selectedNews)
-        reloadData()
+        newsListCollectionView.reloadData()
     }
 }
 
