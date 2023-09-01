@@ -44,7 +44,7 @@
 		0CF07BD32AA26B8D001406B0 /* NewsDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BD22AA26B8D001406B0 /* NewsDetailViewModelTests.swift */; };
 		0CF07BD72AA27350001406B0 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF07BD62AA27350001406B0 /* LaunchScreenViewController.swift */; };
 		0CF07BDA2AA27385001406B0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0CF07BD92AA27385001406B0 /* Lottie */; };
-		0CF07BDD2AA27482001406B0 /* newsAnimations.json in Resources */ = {isa = PBXBuildFile; fileRef = 0CF07BDC2AA27482001406B0 /* newsAnimations.json */; };
+		0CF07BDF2AA277AA001406B0 /* worldsnews.json in Resources */ = {isa = PBXBuildFile; fileRef = 0CF07BDE2AA277AA001406B0 /* worldsnews.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +102,7 @@
 		0CF07BCE2AA2615A001406B0 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		0CF07BD22AA26B8D001406B0 /* NewsDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModelTests.swift; sourceTree = "<group>"; };
 		0CF07BD62AA27350001406B0 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
-		0CF07BDC2AA27482001406B0 /* newsAnimations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newsAnimations.json; sourceTree = "<group>"; };
+		0CF07BDE2AA277AA001406B0 /* worldsnews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = worldsnews.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,7 +509,7 @@
 		0CF07BDB2AA27409001406B0 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				0CF07BDC2AA27482001406B0 /* newsAnimations.json */,
+				0CF07BDE2AA277AA001406B0 /* worldsnews.json */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -632,8 +632,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C58586E2A9A77C40089D81B /* .swiftlint.yml in Resources */,
+				0CF07BDF2AA277AA001406B0 /* worldsnews.json in Resources */,
 				0C5858392A9A6B7C0089D81B /* Assets.xcassets in Resources */,
-				0CF07BDD2AA27482001406B0 /* newsAnimations.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

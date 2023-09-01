@@ -10,7 +10,8 @@ import Lottie
 import UIKit
 
 final class LaunchScreenViewController: BaseViewController {
-    let lottieView = LottieAnimationView(name: "newsAnimations")
+    let lottieView = LottieAnimationView(name: "worldsnews")
+    let splashLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,20 @@ final class LaunchScreenViewController: BaseViewController {
         }
 
         view.addSubview(lottieView)
+        lottieView.addSubview(splashLabel)
+
+        splashLabel.text = "Worlds News"
 
         lottieView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-
             make.width.equalToSuperview().multipliedBy(0.75)
             make.height.equalToSuperview().multipliedBy(0.75)
+        }
+
+        splashLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
 
         lottieView.loopMode = .loop
