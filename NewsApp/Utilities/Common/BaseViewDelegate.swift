@@ -10,15 +10,11 @@ import Foundation
 // MARK: BaseViewDelegate
 
 protocol BaseViewDelegate: AnyObject {
-    func showIndicator()
-    func hideIndicator()
-    func showRequestErrorPopUp(errorType: APIError)
+    func showRequestErrorPopUp(title: String, message: String)
 }
 
 extension BaseViewDelegate {
-    func showIndicator() { }
-    func hideIndicator() { }
-    func showRequestErrorPopUp(errorType: APIError) { }
+    func showRequestErrorPopUp(title: String, message: String) { }
 }
 
 // MARK: Custom Error

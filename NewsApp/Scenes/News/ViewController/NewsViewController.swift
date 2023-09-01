@@ -10,8 +10,13 @@ import SnapKit
 
 // MARK: NewsViewDelegate
 protocol NewsViewDelegate: BaseViewDelegate {
+    func setTableView()
+    func setCollectionView()
     func reloadData()
-    func goDetailScreen(with viewController: UIViewController)
+    func goDetailScreen(_ sourceList: Source)
+    func showRetryPopup(title: String, message: String)
+    func hideIndicator()
+    func showIndicator()
 }
 
 final class NewsViewController: BaseViewController {
@@ -22,7 +27,8 @@ final class NewsViewController: BaseViewController {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
-        collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
@@ -41,12 +47,14 @@ final class NewsViewController: BaseViewController {
 
     private let refreshControl = UIRefreshControl()
 
+    // MARK: ViewModel
     private var viewModel = NewsViewModel()
 
+    // MARK: lifeCycleInfo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.startAnimating()
-        viewModel.getNewsSource()
+        viewModel.viewWillAppear()
     }
 
     override func viewDidLoad() {
@@ -85,11 +93,9 @@ final class NewsViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-
-        setTableView()
-        setCollectionView()
     }
 
+    // MARK: Pull to refresh source list data
     @objc private func refreshData() {
         viewModel.getNewsSource()
     }
@@ -107,6 +113,10 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setSourcelist(title: viewModel.sourceList[indexPath.row].name ?? "",
                            desc:  viewModel.sourceList[indexPath.row].description ?? "")
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectItemAtTableview(indexPath)
     }
 }
 
@@ -172,7 +182,37 @@ extension NewsViewController: NewsViewDelegate {
         categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
     }
 
-    func goDetailScreen(with viewController: UIViewController) {
-        pushViewController(with: viewController)
+    func goDetailScreen(_ sourceList: Source) {
+        let controller = NewsDetailViewController(sourceTitle: sourceList.name, sourceID: sourceList.id)
+        navigationController?.pushViewController(
+            controller,
+            animated: true
+        )
     }
+
+    func showRetryPopup(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let retryAction = UIAlertAction(title: "Tekrar Dene", style: .default) { _ in
+            self.viewModel.getNewsSource()
+        }
+
+        let cancelAction = UIAlertAction(title: "Ana Sayfaya Git", style: .default) { _ in
+            self.pushViewController(with: NewsViewController())
+        }
+
+        alert.addAction(retryAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    func showIndicator() {
+        activityIndicator.startAnimating()
+    }
+
+    func hideIndicator() {
+        activityIndicator.stopAnimating()
+    }
+
 }

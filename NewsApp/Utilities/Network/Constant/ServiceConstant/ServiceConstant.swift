@@ -17,6 +17,7 @@ extension Constant {
             case baseDetailUrl = "https://newsapi.org/v2/top-headlines?sources"
             case baseCategoryUrl = "https://newsapi.org/v2/top-headlines/sources?category"
             case apikey = "apiKey=8e9f2552595e46968c630269fe0eda98"
+            //case apikey = "apiKey=fd00a14f46984e01badc5131229f4dc0"
 
             //Check url path
             //https://newsapi.org/v2/top-headlines/sources?apiKey=8e9f2552595e46968c630269fe0eda98
