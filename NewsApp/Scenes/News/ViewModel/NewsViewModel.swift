@@ -28,6 +28,7 @@ final class NewsViewModel {
         self.service = service
     }
 
+    // MARK: Get Source List
     func getNewsSource() {
         self.view?.showIndicator()
         service.fetchNews { [weak self] result in

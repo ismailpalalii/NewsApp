@@ -17,9 +17,9 @@ final class NewsDetailViewModel {
     private let service: NetworkServiceProtocol
     private var coreDataService: CoreDataService
 
-    var sourceDetailList: [Article] = []
-    var topNews: [Article] = []
-    var sourceID = ""
+    var sourceDetailList: [Article] = [] // News Detail source list
+    var topNews: [Article] = [] // Top news  list
+    var sourceID = "" // Select source id
 
     init(view: NewsDetailViewDelegate? = nil,
          service: NetworkServiceProtocol,
@@ -73,18 +73,22 @@ final class NewsDetailViewModel {
         }
     }
 
+   // MARK: Save Core Data
     func saveToCoreData(title: String) {
         coreDataService.saveData(title: title)
     }
 
+    // MARK: Delete Core Data
     func deleteToCoreData(title: String) {
         coreDataService.deleteData(title: title)
     }
 
+    // MARK: Fetch Core Data
     func fetchData() -> [SaveNews]? {
         coreDataService.fetchData()
     }
 
+    // MARK: toggle Reading List Status
     func toggleReadingListStatus(for news: Article) {
         if let existingNews = fetchData()?.first(where: { $0.title == news.title }) {
             coreDataService.deleteData(title: existingNews.title ?? "")

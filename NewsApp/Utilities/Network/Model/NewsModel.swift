@@ -36,6 +36,7 @@ enum Category: String, Codable {
     case technology = "technology"
 }
 
+// MARK: - NewsModel Fake Data
 extension NewsModel {
     static var fakeData: NewsModel {
         return NewsModel(

@@ -1,6 +1,7 @@
 import CoreData
 import UIKit
 
+// MARK: Core Data Manager
 class CoreDataManager {
 
     static let shared = CoreDataManager()
@@ -15,6 +16,7 @@ class CoreDataManager {
                 persistentContainer = appDelegate.persistentContainer
     }
 
+    // MARK: Save Context
     func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -27,6 +29,7 @@ class CoreDataManager {
         }
     }
 
+    // MARK: Fetch Data
     func fetchData<T: NSManagedObject>(_ type: T.Type) -> [T]? {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<T> = NSFetchRequest<T>(entityName: String(describing: T.self))
@@ -38,6 +41,7 @@ class CoreDataManager {
         }
     }
 
+    // MARK: Delete Object
     func deleteObject(_ object: NSManagedObject) {
         let context = persistentContainer.viewContext
         context.delete(object)

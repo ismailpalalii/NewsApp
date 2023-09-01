@@ -13,6 +13,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
     // MARK: Cell identifier
     static let identifier: String = "NewsDetailCollectionViewCell"
 
+    // MARK: Create UI items
     private lazy var newsImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -79,8 +80,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
 
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(newsTitleLabel.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(-16)
-            make.width.equalToSuperview().multipliedBy(0.55)
+            make.left.equalToSuperview().offset(2)
         }
 
         newsDateLabel.snp.makeConstraints { make in

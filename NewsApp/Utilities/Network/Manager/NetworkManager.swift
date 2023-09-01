@@ -8,6 +8,7 @@
 import Alamofire
 import Foundation
 
+// MARK: Network Manager
 final class NetworkManager {
     static let shared = NetworkManager()
 
@@ -27,8 +28,8 @@ final class NetworkManager {
                         completion(.success(data))
                     case .failure(let err):
                         completion(.failure(err))
-                    }
                 }
             }
+        }
     }
 }

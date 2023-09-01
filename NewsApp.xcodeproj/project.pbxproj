@@ -96,8 +96,8 @@
 		0CF07BAE2A9F56C7001406B0 /* NewsDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF07BBB2A9FA22C001406B0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0CF07BBE2A9FA2B7001406B0 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SaveNews+CoreDataClass.swift"; path = "NewsApp/Utilities/Data/CoreData/Models/SaveNews+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SaveNews+CoreDataProperties.swift"; path = "NewsApp/Utilities/Data/CoreData/Models/SaveNews+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaveNews+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaveNews+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0CF07BC82AA10CD6001406B0 /* Article+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Extension.swift"; sourceTree = "<group>"; };
 		0CF07BCE2AA2615A001406B0 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		0CF07BD22AA26B8D001406B0 /* NewsDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModelTests.swift; sourceTree = "<group>"; };
@@ -137,8 +137,6 @@
 		0C5858202A9A6B7A0089D81B = {
 			isa = PBXGroup;
 			children = (
-				0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */,
-				0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */,
 				0C58582B2A9A6B7A0089D81B /* NewsApp */,
 				0C5858452A9A6B7C0089D81B /* NewsAppTests */,
 				0C58584F2A9A6B7C0089D81B /* NewsAppUITests */,
@@ -437,6 +435,8 @@
 		0CF07BB92A9FA19D001406B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0CF07BC42AA0FDE8001406B0 /* SaveNews+CoreDataClass.swift */,
+				0CF07BC52AA0FDE8001406B0 /* SaveNews+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
