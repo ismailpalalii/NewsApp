@@ -70,6 +70,34 @@ extension NewsDetail {
                     url: "http://www.bbc.co.uk/news/world-africa-66630354",
                     urlToImage: "https://ichef.bbci.co.uk/news/1024/branded_news/15C7B/production/_130911298_p0g919j3.jpg",
                     publishedAt: "2023-08-30T16:07:21.940987Z"
+                ),
+                Article(
+                    title: "Why won't the US call this coup a coup?",
+                    description: "The military took over the government in Niger. Here’s why the US doesn’t want to call it an overthrow.",
+                    url: "http://www.bbc.co.uk/news/world-africa-66630354",
+                    urlToImage: "https://ichef.bbci.co.uk/news/1024/branded_news/15C7B/production/_130911298_p0g919j3.jpg",
+                    publishedAt: "2023-08-30T16:07:21.940987Z"
+                ),
+                Article(
+                    title: "Why won't the US call this coup a coup?",
+                    description: "The military took over the government in Niger. Here’s why the US doesn’t want to call it an overthrow.",
+                    url: "http://www.bbc.co.uk/news/world-africa-66630354",
+                    urlToImage: "https://ichef.bbci.co.uk/news/1024/branded_news/15C7B/production/_130911298_p0g919j3.jpg",
+                    publishedAt: "2023-08-30T16:07:21.940987Z"
+                ),
+                Article(
+                    title: "Why won't the US call this coup a coup?",
+                    description: "The military took over the government in Niger. Here’s why the US doesn’t want to call it an overthrow.",
+                    url: "http://www.bbc.co.uk/news/world-africa-66630354",
+                    urlToImage: "https://ichef.bbci.co.uk/news/1024/branded_news/15C7B/production/_130911298_p0g919j3.jpg",
+                    publishedAt: "2023-08-30T16:07:21.940987Z"
+                ),
+                Article(
+                    title: "Why won't the US call this coup a coup?",
+                    description: "The military took over the government in Niger. Here’s why the US doesn’t want to call it an overthrow.",
+                    url: "http://www.bbc.co.uk/news/world-africa-66630354",
+                    urlToImage: "https://ichef.bbci.co.uk/news/1024/branded_news/15C7B/production/_130911298_p0g919j3.jpg",
+                    publishedAt: "2023-08-30T16:07:21.940987Z"
                 )
             ]
         )
