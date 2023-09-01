@@ -16,6 +16,7 @@ protocol NetworkServiceProtocol: AnyObject {
 
 // MARK: - Services
 final class NetworkService: NetworkServiceProtocol {
+
     func fetchNews(completion: @escaping (Result<NewsModel?, APIError>) -> Void) {
         NetworkManager.shared.fetch(url: Constant.Network.ServiceEndPoint.fetchNewsPath(), responseType: NewsModel.self) { result in
             switch result {

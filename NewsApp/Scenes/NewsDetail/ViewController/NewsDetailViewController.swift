@@ -185,7 +185,7 @@ final class NewsDetailViewController: BaseViewController {
            }
        }
 
-    // Setup timer check new source list
+    // MARK: Setup timer check new source list
     private func setupAutoRefreshTimer() {
         autoRefreshTimer = Timer.scheduledTimer(
             timeInterval: 60.0,
@@ -196,7 +196,7 @@ final class NewsDetailViewController: BaseViewController {
         )
     }
 
-    // Check new source list
+    // MARK: Check new source list
     @objc private func autoRefreshTimerFired() {
         let previousCount = newsListCount
         viewModel.getNewsDetailList()
@@ -207,6 +207,7 @@ final class NewsDetailViewController: BaseViewController {
         }
     }
 
+    // MARK: autoScroll
     @objc private func autoScroll() {
         let nextPage = (pageController.currentPage + 1) % pageController.numberOfPages
         pageController.currentPage = nextPage
@@ -220,6 +221,7 @@ final class NewsDetailViewController: BaseViewController {
         checkAndShowRetryPopup()
     }
 
+    // MARK: saveSlideItems
     @objc func saveSlideItems(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let selectedNews = viewModel.topNews[indexPath.row]
@@ -228,6 +230,7 @@ final class NewsDetailViewController: BaseViewController {
         reloadData()
     }
 
+    // MARK: saveNewsItems
     @objc func saveNewsItems(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         let selectedNews = viewModel.sourceDetailList[indexPath.row]

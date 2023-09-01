@@ -48,6 +48,7 @@ extension BaseViewController {
         }
     }
 
+    // MARK: Show Request Error PopUp
     func showRequestErrorPopUp(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 

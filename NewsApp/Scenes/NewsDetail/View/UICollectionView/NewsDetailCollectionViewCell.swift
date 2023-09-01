@@ -13,6 +13,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
     // MARK: Cell identifier
     static let identifier: String = "NewsDetailCollectionViewCell"
 
+    // MARK: Create UI items
     private lazy var newsImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView

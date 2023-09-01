@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: Date formatter
 extension Article {
     func formattedPublishedDate() -> String {
         let inputFormatter = ISO8601DateFormatter()

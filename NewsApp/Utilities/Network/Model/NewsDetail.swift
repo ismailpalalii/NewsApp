@@ -43,6 +43,7 @@ struct Article: Codable {
     let publishedAt: String
 }
 
+// MARK: - NewsModel Fake Data
 extension NewsDetail {
     static var fakeData: NewsDetail {
         return NewsDetail(

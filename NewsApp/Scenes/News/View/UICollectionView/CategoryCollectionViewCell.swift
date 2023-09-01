@@ -13,6 +13,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: Cell identifier
     static let identifier: String = "CategoryCollectionViewCell"
 
+    // MARK: Create UI items
     private lazy var categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "plus")
@@ -67,8 +68,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             categoryImageView.image = UIImage(systemName: "plus")
         }
     }
-
-
 
     // MARK: Set category item
     func setCategorylist(title: String) {
