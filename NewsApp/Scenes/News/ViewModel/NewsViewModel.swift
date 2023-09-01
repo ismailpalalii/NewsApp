@@ -28,31 +28,54 @@ final class NewsViewModel {
         self.service = service
     }
 
-    // MARK: Get News Source List
     func getNewsSource() {
-        view?.showIndicator()
-        service.fetchNews { [weak self] response in
+        self.view?.showIndicator()
+        service.fetchNews { [weak self] result in
             self?.view?.hideIndicator()
-            guard let response = response else { return }
 
-            // MARK: Filter English language only
-            let englishSources = response.sources.filter { $0.language == "en" }
-            self?.sourceList = englishSources
-            self?.originalSources = englishSources
-
-            // MARK: Extract all categories
-            for source in response.sources {
-                let sourceCategory = source.category
-                if !(self?.allCategories.contains(sourceCategory) ?? false) {
-                    self?.allCategories.append(sourceCategory)
+            switch result {
+            case .success(let response):
+                // Make sure response is non-nil
+                guard let newsModel = response else {
+                    self?.view?.showRequestErrorPopUp(title: "Error", message: APIError.dataNotFound.localizedDescription)
+                    return
                 }
-            }
 
-            // MARK: Select all categories by default
-            self?.selectedCategories = []
+                // MARK: Filter English language only
+                let englishSources = newsModel.sources.filter { $0.language == "en" }
+                self?.sourceList = englishSources
+                self?.originalSources = englishSources
 
-            DispatchQueue.main.async {
-                self?.view?.reloadData()
+                // MARK: Extract all categories
+                for source in newsModel.sources {
+                    let sourceCategory = source.category
+                    if !(self?.allCategories.contains(sourceCategory) ?? false) {
+                        self?.allCategories.append(sourceCategory)
+                    }
+                }
+
+                // MARK: Select all categories by default
+                self?.selectedCategories = []
+
+                DispatchQueue.main.async {
+                    self?.view?.reloadData()
+                }
+
+            case .failure(let error):
+                let errorMessage: String
+                switch error {
+                case .invalidURL:
+                    errorMessage = "Invalid URL"
+                case .networkError(let networkError):
+                    errorMessage = "Network Error: \(networkError.localizedDescription)"
+                case .dataNotFound:
+                    errorMessage = "Data not found"
+                case .decodingError(let decodingError):
+                    errorMessage = "Decoding Error: \(decodingError.localizedDescription)"
+                case .customError(let message):
+                    errorMessage = message
+                }
+                self?.view?.showRequestErrorPopUp(title: "Error", message: errorMessage)
             }
         }
     }

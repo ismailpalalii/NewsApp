@@ -14,7 +14,9 @@ protocol NewsViewDelegate: BaseViewDelegate {
     func setCollectionView()
     func reloadData()
     func goDetailScreen(_ sourceList: Source)
-    func showRetryPopup(message: String)
+    func showRetryPopup(title: String, message: String)
+    func hideIndicator()
+    func showIndicator()
 }
 
 final class NewsViewController: BaseViewController {
@@ -188,15 +190,29 @@ extension NewsViewController: NewsViewDelegate {
         )
     }
 
-    func showRetryPopup(message: String) {
-        let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+    func showRetryPopup(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let retryAction = UIAlertAction(title: "Tekrar Dene", style: .default) { _ in
             self.viewModel.getNewsSource()
         }
 
+        let cancelAction = UIAlertAction(title: "Ana Sayfaya Git", style: .default) { _ in
+            self.pushViewController(with: NewsViewController())
+        }
+
         alert.addAction(retryAction)
+        alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
     }
+
+    func showIndicator() {
+        activityIndicator.startAnimating()
+    }
+
+    func hideIndicator() {
+        activityIndicator.stopAnimating()
+    }
+
 }

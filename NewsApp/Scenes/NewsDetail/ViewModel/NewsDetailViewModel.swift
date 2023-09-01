@@ -17,7 +17,6 @@ final class NewsDetailViewModel {
     private let service: NetworkService
     private var coreDataService: CoreDataService
 
-
     var sourceDetailList: [Article] = []
     var topNews: [Article] = []
     var sourceID = ""
@@ -32,29 +31,47 @@ final class NewsDetailViewModel {
 
     // MARK: Get News Detail Source List
     func getNewsDetailList() {
-        service.fetchDetailNews(id: sourceID) { [weak self] response in
+        service.fetchDetailNews(id: sourceID) { [weak self] result in
             self?.view?.hideIndicator()
-            guard let response = response else { return }
 
-            // Sort articles by date in descending order
-            let sortedArticles = response.articles?.sorted(by: { $0.formattedPublishedDate() > $1.formattedPublishedDate() }) ?? []
+            switch result {
+            case .success(let response):
+                guard let newsDetail = response else {
+                    self?.view?.showRequestErrorPopUp(title: "Error", message: APIError.dataNotFound.localizedDescription)
+                    return }
 
-            if sortedArticles.count >= 3 {
-                self?.sourceDetailList = Array(sortedArticles.dropFirst(3))
-                self?.topNews = Array(sortedArticles.prefix(3))
-            } else {
-                self?.sourceDetailList = []
-                self?.topNews = sortedArticles
-            }
-            DispatchQueue.main.async {
-                self?.view?.reloadData()
+                // Sort articles by date in descending order
+                let sortedArticles = newsDetail.articles?.sorted(by: { $0.formattedPublishedDate() > $1.formattedPublishedDate() }) ?? []
+
+                if sortedArticles.count >= 3 {
+                    self?.sourceDetailList = Array(sortedArticles.dropFirst(3))
+                    self?.topNews = Array(sortedArticles.prefix(3))
+                } else {
+                    self?.sourceDetailList = []
+                    self?.topNews = sortedArticles
+                }
+                DispatchQueue.main.async {
+                    self?.view?.reloadData()
+                }
+
+            case .failure(let error):
+                let errorMessage: String
+                switch error {
+                case .invalidURL:
+                    errorMessage = "Invalid URL"
+                case .networkError(let networkError):
+                    errorMessage = "Network Error: \(networkError.localizedDescription)"
+                case .dataNotFound:
+                    errorMessage = "Data not found"
+                case .decodingError(let decodingError):
+                    errorMessage = "Decoding Error: \(decodingError.localizedDescription)"
+                case .customError(let message):
+                    errorMessage = message
+                }
+                self?.view?.showRequestErrorPopUp(title: "Error", message: errorMessage)
             }
         }
     }
-
-    func isItemSaved(id: UUID) -> Bool {
-            return false
-        }
 
     func saveToCoreData(title: String) {
         coreDataService.saveData(title: title)

@@ -13,7 +13,9 @@ protocol NewsDetailViewDelegate: BaseViewDelegate {
     func setCollectionView()
     func setSourceID()
     func reloadData()
-    func showRetryPopup(message: String)
+    func showRetryPopup(title:String, message: String)
+    func hideIndicator()
+    func showIndicator()
 }
 
 final class NewsDetailViewController: BaseViewController {
@@ -173,7 +175,7 @@ final class NewsDetailViewController: BaseViewController {
    func checkAndShowRetryPopup() {
            pullRefreshCount += 1
            if pullRefreshCount % 3 == 0 {
-               showRetryPopup(message: "Bilgileri alırken bir sorun oluştu. Lütfen tekrar deneyin.")
+               showRetryPopup(title: "Opsiyonel Hata", message: "Bilgileri alırken bir sorun oluştu. Lütfen tekrar deneyin.")
            } else {
                viewModel.getNewsDetailList()
                reloadData()
@@ -285,14 +287,27 @@ extension NewsDetailViewController: UICollectionViewDelegate, UICollectionViewDa
 
 // MARK: NewsDetailViewDelegate Delegate
 extension NewsDetailViewController: NewsDetailViewDelegate {
-    func showRetryPopup(message: String) {
-        let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+    func showIndicator() {
+        activityIndicator.startAnimating()
+    }
+
+    func hideIndicator() {
+        activityIndicator.stopAnimating()
+    }
+
+    func showRetryPopup(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let retryAction = UIAlertAction(title: "Tekrar Dene", style: .default) { _ in
             self.viewModel.getNewsDetailList()
         }
 
+        let cancelAction = UIAlertAction(title: "Ana Sayfaya Git", style: .default) { _ in
+            self.pushViewController(with: NewsViewController())
+        }
+
         alert.addAction(retryAction)
+        alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
     }
