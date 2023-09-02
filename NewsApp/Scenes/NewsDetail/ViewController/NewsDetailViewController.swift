@@ -49,9 +49,14 @@ final class NewsDetailViewController: BaseViewController {
     }()
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        indicator.hidesWhenStopped = true
-        return indicator
+        if #available(iOS 13.0, *) {
+            return UIActivityIndicatorView(style: .large)
+        } else {
+            let indicator = UIActivityIndicatorView(style: .whiteLarge)
+            indicator.color = .gray
+            indicator.hidesWhenStopped = true
+            return indicator
+        }
     }()
 
     private lazy var pageController: UIPageControl = {
@@ -104,6 +109,16 @@ final class NewsDetailViewController: BaseViewController {
         configure()
     }
 
+    override var shouldAutorotate: Bool {
+      return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+      return [UIInterfaceOrientationMask.landscapeLeft,
+              UIInterfaceOrientationMask.landscapeRight,
+              UIInterfaceOrientationMask.portrait ];
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopAutoScrolling()
@@ -112,7 +127,7 @@ final class NewsDetailViewController: BaseViewController {
     // MARK: - UI Configure
     private func configure() {
         title = sourceTitle
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(sliderCollectionView)
