@@ -23,7 +23,11 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .justified
-        label.textColor = .label
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .black
+        }
         return label
     }()
 
@@ -31,7 +35,7 @@ final class NewsDetailCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .justified
-        label.textColor = .label
+        label.textColor = .black
         return label
     }()
 

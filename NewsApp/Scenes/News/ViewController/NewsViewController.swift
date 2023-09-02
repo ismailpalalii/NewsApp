@@ -40,9 +40,14 @@ final class NewsViewController: BaseViewController {
     }()
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        indicator.hidesWhenStopped = true
-        return indicator
+        if #available(iOS 13.0, *) {
+            return UIActivityIndicatorView(style: .large)
+        } else {
+            let indicator = UIActivityIndicatorView(style: .whiteLarge)
+            indicator.color = .gray
+            indicator.hidesWhenStopped = true
+            return indicator
+        }
     }()
 
     private let refreshControl = UIRefreshControl()
@@ -67,10 +72,20 @@ final class NewsViewController: BaseViewController {
         configure()
     }
 
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.landscapeLeft,
+                UIInterfaceOrientationMask.landscapeRight,
+                UIInterfaceOrientationMask.portrait ];
+    }
+
     // MARK: - UI Configure
     private func configure() {
         title = "Kaynaklar"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         view.addSubview(categoryCollectionView)
         view.addSubview(newsSourcesTableView)
         view.addSubview(activityIndicator)
@@ -108,14 +123,15 @@ final class NewsViewController: BaseViewController {
 // MARK: UITableView Delegate
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.sourceList.count ?? 0
+        return viewModel.sourceList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = newsSourcesTableView.dequeueReusableCell(withIdentifier: NewsSourcesTableViewCell.identifier, for: indexPath) as? NewsSourcesTableViewCell else { return UITableViewCell() }
+        guard let cell = newsSourcesTableView.dequeueReusableCell(withIdentifier: NewsSourcesTableViewCell.identifier,
+                                                                  for: indexPath) as? NewsSourcesTableViewCell else { return UITableViewCell() }
 
-        cell.setSourcelist(title: viewModel.sourceList[indexPath.row].name ?? "",
-                           desc:  viewModel.sourceList[indexPath.row].description ?? "")
+        cell.setSourcelist(title: viewModel.sourceList[indexPath.row].name ,
+                           desc:  viewModel.sourceList[indexPath.row].description )
         return cell
     }
 
@@ -204,7 +220,7 @@ extension NewsViewController: NewsViewDelegate {
         let cancelAction = UIAlertAction(title: "Ana Sayfaya Git", style: .default) { _ in
             self.pushViewController(with: NewsViewController())
         }
-
+        
         alert.addAction(retryAction)
         alert.addAction(cancelAction)
 
