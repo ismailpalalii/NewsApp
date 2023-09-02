@@ -38,14 +38,11 @@
    ```
 <!-- ABOUT THE PROJECT -->
 
-In this project, news sources are displayed using newsapi. 
-When a news source is selected, the relevant news is shown on the screen. 
-The entire user interface was built programmatically using SnapKit, without the use of storyboards.
+In this project, news sources are displayed using the News API. When a news source is selected, the relevant news is shown on the screen. The entire user interface was built programmatically using SnapKit, without the use of storyboards.
 
 The project follows the MVVM architecture and adopts a protocol-oriented approach to enhance code maintainability and flexibility. During the development of the project, strict adherence to SwiftLint rules was maintained, and Unit Tests were meticulously written to ensure the reliability of both screens.
 
-
-
+The application has a minimum iOS version requirement of 12.0, ensuring that it runs on iOS 12.0 and newer versions. Additionally, the application supports both portrait and landscape orientations, allowing users to use their devices in both vertical and horizontal positions. This responsive design provides a more versatile and user-friendly experience, adapting to the device's screen orientation.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
