@@ -109,6 +109,16 @@ final class NewsDetailViewController: BaseViewController {
         configure()
     }
 
+    override var shouldAutorotate: Bool {
+      return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+      return [UIInterfaceOrientationMask.landscapeLeft,
+              UIInterfaceOrientationMask.landscapeRight,
+              UIInterfaceOrientationMask.portrait ];
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopAutoScrolling()
