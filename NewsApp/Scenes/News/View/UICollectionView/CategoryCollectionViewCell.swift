@@ -16,7 +16,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: Create UI items
     private lazy var categoryImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "plus")
+        imageView.image = UIImage(named: "plus")
         imageView.tintColor = .black
         return imageView
     }()
@@ -25,7 +25,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .justified
-        label.textColor = .label
+        label.textColor = .black
         return label
     }()
 
@@ -64,9 +64,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: Set select image
     func setCheckmark(_ isSelected: Bool) {
         if isSelected {
-            categoryImageView.image = UIImage(systemName: "checkmark")
+            categoryImageView.image = UIImage(named: "checkmark")
         } else {
-            categoryImageView.image = UIImage(systemName: "plus")
+            categoryImageView.image = UIImage(named: "plus")
         }
     }
 

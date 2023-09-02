@@ -40,9 +40,14 @@ final class NewsViewController: BaseViewController {
     }()
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        indicator.hidesWhenStopped = true
-        return indicator
+        if #available(iOS 13.0, *) {
+            return UIActivityIndicatorView(style: .large)
+        } else {
+            let indicator = UIActivityIndicatorView(style: .whiteLarge)
+            indicator.color = .gray
+            indicator.hidesWhenStopped = true
+            return indicator
+        }
     }()
 
     private let refreshControl = UIRefreshControl()
@@ -70,7 +75,7 @@ final class NewsViewController: BaseViewController {
     // MARK: - UI Configure
     private func configure() {
         title = "Kaynaklar"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         view.addSubview(categoryCollectionView)
         view.addSubview(newsSourcesTableView)
         view.addSubview(activityIndicator)
